@@ -1,0 +1,42 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;      padding: 0;
+    border: none;   outline: none;
+    box-sizing: border-box;
+}
+
+/* ====================== CSS : form validation ================================================= */
+form {
+    margin: 1rem; padding: 1rem;
+    border: 2px solid black;
+    display: inline-block;
+}
+.required { color: red; }
+.box {
+    margin-bottom: 1rem;
+}
+.box input {
+    outline: 1px solid black;
+    padding: 5px; 
+    margin-top: 5px;
+}
+
+.error_msg { display: none; color: red; }
+.hint {display: none; color: gold;}
+
+.box input:focus:invalid:not(:placeholder-shown) {
+    outline: 1px solid red;
+}
+.box input:not(:focus):invalid:not(:placeholder-shown) {
+    outline: 1px solid red;
+}
+.box input:not(:focus):invalid:not(:placeholder-shown) ~ .error_msg{
+    display: block;
+}
+.box input:focus:invalid:not(:placeholder-shown) ~ .hint{
+    display: block;
+}

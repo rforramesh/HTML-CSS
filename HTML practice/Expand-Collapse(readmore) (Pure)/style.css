@@ -1,0 +1,95 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+[id] {
+    scroll-margin-top: 2rem;
+}
+
+/* ============================================================ */
+.container {
+    margin: 1rem; padding: 1rem;
+    border: 2px solid black;
+    display: inline-block;
+
+}
+.container>p {
+    width: 200px; height: 150px;
+    border: 2px solid red;
+    overflow: hidden;
+    position: relative;
+    transition: height 1s ease;
+    transition-behavior: allow-discrete;
+    interpolate-size: allow-keywords;
+}
+
+.container>p::after {               /* Add the fade effect  */
+    content: "";
+    position: absolute; left: 0; bottom: 0;
+    width: 100%; height: 50px;
+    background: linear-gradient(to bottom, transparent, white);
+}
+#checkbox_btn:checked ~ p::after {  /* Remove the fade effect  */
+    display: none;
+}
+
+label {
+    display: inline-block;
+    padding: 5px; margin: 5px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+
+label::after {
+    content: "Expand";
+}
+
+#checkbox_btn:checked ~ label::after {
+    content: "Collapse";
+}
+
+#checkbox_btn:checked ~ p {
+    height: auto;
+}
+
+/* <!-- =================== line-clamp ===================================== --> */
+
+
+.box {
+    border: 2px solid black;
+    display: inline-block;
+    margin: 1rem; padding: 1rem;
+}
+.box > p {
+    width: 200px;
+    border: 2px solid red;
+    padding: 1rem 1rem 0 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; line-clamp: 3;       /* text-ellipsess */
+    overflow: hidden;
+}
+.box > label {
+    display: inline-block;
+    padding: 5px; margin: 5px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+.box > label::after {
+    content: 'Read More';
+}
+#btn:checked ~ label::after {
+    content: 'Read less';
+}
+#btn:checked + p {
+    -webkit-line-clamp: none; line-clamp: none;
+}

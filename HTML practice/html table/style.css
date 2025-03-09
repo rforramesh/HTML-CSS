@@ -1,0 +1,55 @@
+html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    /* font-size: 62.5%; */
+}
+*{
+    margin: 0; padding: 0;
+    outline: none; border: none;
+    box-sizing: border-box; 
+}
+/*---------------------------- CSS for Table -----------------*/
+.table-container{                      /* very important */ 
+    overflow: auto;
+    width: 100%;  height: 200px;
+}
+.table-container::-webkit-scrollbar{
+    width: 10px;        /* is for vertical scrollbar */
+    height: 10px;       /* is for horizontal scrollbar */
+}
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 16px;
+}
+
+
+table{
+    border-collapse: collapse;  /* CSS for cellspacing="0"   */
+    border-spacing: 0;
+    /* border-collapse: separate;  
+    border-spacing: 5px;           same as cellspacing="5"  */
+}
+table th, td {
+    border: 2px solid #1f2221;
+    padding: 10px;
+}
+table thead tr{
+    background-color: cyan;
+    position: sticky; top: 0; left: 0;
+}
+table tbody tr:nth-of-type(even) {  /* target even rows */
+    background-color: lightgrey;
+}
+table tbody tr td:nth-of-type(odd) { /* target odd columns */
+    background-color: pink;
+}
+table tbody tr td:nth-child(2) { /* target 2nd column */
+    background-color: yellow;
+}
+
+table > caption {
+    text-transform: uppercase;
+    text-overflow: ellipsis;   /* if text overflows ... will be seen */
+    font-size: 1.5rem;
+}
+

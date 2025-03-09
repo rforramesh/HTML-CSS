@@ -1,0 +1,140 @@
+Note :- Ways to achieve click event in html :- using js, using input:checked, using <details> tag
+*****CSS variable--------------------------------------------------------------------------------------------------
+:root{			// : root{} is for global scope
+            --x : grey;			//creating a variable in CSS
+        }
+body{
+            background-color: var(--x);	//using the variable
+        }
+Note : variables can hold any CSS property values like color, units, url, number, string, etc i.e.
+CSS variables cannot hold selectors or entire rules; they can only store property values.
+
+*****Pass entire html element to a js function ----------------------------------------------------------------
+//this keyword represent current element. So, we can pass entire html element to a js function
+    <div id="1" name="div1" value="div1" onclick="func(this)">Lorem</div>
+    <script>
+        function func(obj) {
+	let inner = obj.innerHTML;
+            	let arr = obj.attributes;	        //all attributes specified by us are stored as array
+	let x = obj.attributes["id"].nodeValue; 
+        OR  let x = obj.attributes[0].nodeValue; 
+        }
+    </script>
+</body>
+
+*****[attribute selector] :- ----------------------------------------------------------------------------------------
+e.g. [id] {	 	/*  [attribute selector] : targets all elements that have attribute id */
+    scroll-margin-top: 2em;
+}
+e.g. input[type="submit"][required] { - }
+
+*****Before {box-sizing: border-box;} : ----------------------------------------------------------------------
+If we write,height=200px,means height of content will be 200px,excluding padding,border,margin
+*****After {box-sizing: border-box;} : 
+If we write,height=200px,means 200px == height of content+padding+border, excluding margin
+
+
+
+***** :nth-child() vs :nth-of-type() :- they are same, the only difference is nth-of-type() considers element type(i.e. tag name) while nth-child() doesn't consider element type as it selects blindly
+E.g. :-
+<div>
+    <h1>Hello</h1>
+    <p>Paragraph</p>
+    <p>Target</p>
+</div>
+div p:nth-child(2) :- will select the second child-blindly i.e. <p>Paragraph</p>
+div p:nth-of-type(2) will select the second child-typewise i.e.  <p>Target</p>
+//Here,we can pass values like even, odd, 2, 3n (i.e.3n means 3rd,6th,9th,...)
+// table thead > tr:last-of-type > th:nth-of-type(2) {-}	
+
+******To have  empty <a> link  -------------------------------------------------------------------------
+<a href="#">JAVASCRIPT</a>//on clicking,# is appended to the url,so page gets scrolled to top
+<a href="#" onclick="return false;">JAVASCRIPT</a> // onclicking # is not appended to url, and nothing happens to html page  because we are returning false.
+Also, old way of doing this is <a href="javascript:void(0)"> </a>. 
+Better way :javascript:void(0)  OR  if we don't want link, then we should simply use <button> tag
+
+*****CSS Make element invisible : display: none | visibility : hidden | opacity: 0 | width:0 height:0 
+ display: none OR visibility : hidden OR opacity: 0 OR width:0 height:0, if used, makes the element disappear from screen. They work same,but The only diff. between them is display: none doesn't occupy space on the screen whereas visibility : hidden & opacity: 0 ocupies space on the screen.
+Remeber :- They only make the element invisible but the element is not removed from the DOM.
+Because If we inspect, we will be able to see the elements there. Keep in mind that CSS is for styling &  it does not have the ability to affect the DOM. 
+Note :- opacity: 0 elements are invisible,but still remains visible to interactions like mouse clicks. So, we should be careful while using opacity: 0.
+Preferred way : using visiblility : hidden, since it reserves space thus preventing layout shift which is good for SEO.
+Note : Use aria-hidden="true" alongside display: none,visibility: hidden,opacity: 0 if we want the content should not be read by screen readers.
+
+*****CSS Box Model --------------------------------------------------------------------------------------------
+Suppose we have a div eg.  <div class="box">Content</div>
+Box Model says : 
+Content ---(Around)---> padding ---(Around)---> border ---(Around)---> margin
+& Each of them occupies space.
+Note :- We can see the Box Model of any element by inspecting and going to computated tab.
+Also, If we go under styles tab, there we can see "user agent stylesheet" it is nothing but the default values given by the browser.
+By default, the width and height is applied only to the content(excluding padding, border)
+After using box-sizing:border-box: width and height is applied to content+padding+border
+
+*****border vs outline -------------------------------------------------------------------------------------------
+Border : occupies space. 
+Outline : doesn't occupy space & by default is outside the border with no gap between them.
+outline: 5px solid lightgreen; //creates 5px outside the border with no gap between them
+outline-offset: 20px;	//outline is outside the border & 20px gap(offset) between border & outline
+outline-offset: -20px; //outline is inside the border & 20px gap(offset) between border & outline
+
+*****CSS position -----------------------------------------------------------------------------------------------
+If we say element is positioned that means element is either relative or absolute or fixed or sticky.
+[ Exception : using CSS properties like transform or filter or perspective can also make an element appear as positioned. ]
+If we say element is not positioned that means element is static
+By default, element is not positioned (i.e.position is static). If element is not positioned, then we can't  use properties like z-index, top, left. So,if we want to use properties like  z-index, top, left, then element  must be positioned.
+position: relative; 	//occupies space 
+position: absolute;	//doesn't occupy space, then sticks to nearest parent positioned element.
+
+*****Remove space between 2 images ------------------------------------------------------------------------
+inline elements like img,button acts like words therefore they have some extra space around them. To remove these extra space, we can comment out the spaces in .html file, or img{display: block} or img{vertical-align:middle}.
+
+*****Responsive font-size ===============================================================================
+To make font-size responsive we can use media queries OR there is a better way by using function clamp(min, curr, max)
+E.g. h1 { font-size: clamp(50px, 8vw, 100px); }   /* Responsive font-size */ 
+
+
+*****::before & ::after pseudo elements ====================================================================================
+.box::after { content: ""; }		/* will create a inline element inside the .box */
+
+*****Chatbox : using <textarea> ============================================================================================
+<style>
+        textarea {
+            field-sizing: content;  		/* textarea height grows automatically as content grows*/
+            width: 200px; min-height: 50px;
+            resize: none;
+        }
+</style>
+    	<textarea placeholder="Chatbox"></textarea>
+
+OR  We can use <div contenteditable="true">
+
+
+****<details> tag : very imp. html tag ===================================================================================================
+	<details> : as simple Navbar
+    	<details> : as Dropdown Navbar
+    	<details> : as FAQ section
+    	<details> : as Popup section
+   Note :- Ways to achive click event in html :- using js, using input:checked, using <details> tag
+
+
+***** :has() ========================================================================================
+:has() - is called parent selector because We can select parent element based on child or Sibling.
+1) :has() - passing child using class or id
+.parent:has(.child) {} 	//if .child is direct/indirect child, then only style will be applied to parent
+.parent:has(> .child) {} //if .child is direct child, then only style will be applied  to parent
+.parent:not(:has(img)) {} //if img is not a  child, then then only style will be applied  to parent
+.parent:has(+ p) {}  // Select .parent element if p is a sibling of .parent
+.parent:has(+ p:hover) {}
+.parent:has(input:checked) {}
+.parent:has(.box:hover) > .box:not(:hover){}
+*****CSS : Target a specific range  =================================================================
+.box:nth-child(n + 5):nth-child(-n + 8) { /* targeting 5th element to 8th element */
+    background-color: blue;
+}
+
+
+
+
+
+

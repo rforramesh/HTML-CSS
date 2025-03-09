@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="./script.js"></script>
+</head>
+<body ng-app="myApp">
+    <header><h1><center>Welcome Page</center></h1></header>
+
+    <main ng-controller="myController">
+
+        <p><button type="button" ng-click="form.boolShowForm=!form.boolShowForm;">New Student</button></p>
+
+        <!-- 1 ng-show => 1 login form => All CRUID operations  -->
+        <form ng-show="form.boolShowForm" ng-submit="save()" id="myForm">
+            <fieldset>
+                <legend>Login Form</legend>
+                <label>Enter name : <input type="text" ng-model="user.name" id="name" required></label><br><br>
+                <label>Enter roll : <input type="number" min="1" placeholder="-ve not allowed" ng-model="user.roll" required></label><br><br>
+                <label>Enter email : <input type="email" ng-model="user.email" required></label><br><br>
+                <label>Select file : <input type="file" accept="image/*,application/pdf,.docx,.txt" file-model="user.file" required></label>
+                <div>
+                    <hr>
+                     <input type="submit" value="Submit">
+                    <input type="button" value="Reset" ng-click="reset()">
+                    <input type="button" value="Close" ng-click="form.boolShowForm=!form.boolShowForm;">
+                </div>
+            </fieldset>
+        </form>
+
+        <table border="2" cellspacing="0" cellpadding="12">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Email</th>
+                <th>File</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="obj in arr">
+                <td>{{$index}}</td>
+                <td>{{obj.name}}</td>
+                <td>{{obj.roll}}</td>
+                <td>{{obj.email}}</td>
+                <td>{{obj.file.name}}</td>
+                <td>
+                    <button type="button" ng-click="show($index)">show</button>
+                    <button type="button">edit</button>
+                    <button type="button">delete</button>
+                
+                </td>
+            </tr>
+        </table>
+    </main>
+</body>
+</html>

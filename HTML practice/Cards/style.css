@@ -1,0 +1,36 @@
+html{
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+* {
+    margin: 0;      padding: 0;
+    border: none;   outline: none;
+    box-sizing: border-box;
+}
+[id] {
+    scroll-margin-top: 2rem;
+}
+/* ----------------------- card --------------------------- */
+section {
+    display: flex;
+    flex-wrap: wrap;
+}
+figure {
+    width: 100%;    max-width: 20rem;           /* same */
+    height: 100%;   max-height: 30rem;          /* same */
+    border: 2px solid red; 
+    margin: 1rem;
+}
+img {
+    width: 100%;    max-width: 20rem;           /* same */
+    height: 100%;   max-height: 20rem;          /* same */
+    object-fit: cover; object-position: center; aspect-ratio: 1/1;
+    display: block;         /*To remove extra space around img*/
+}
+figcaption {
+    width: 100%;    max-width:  20rem;           /* same */
+    height: 100%;   max-height: 10rem;          /* same */  
+    min-height: 10rem;  overflow: auto;     /*Keep the height constant*/
+    background-color: pink;
+}

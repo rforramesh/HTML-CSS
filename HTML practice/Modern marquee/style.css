@@ -1,0 +1,32 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;      padding: 0;
+    border: none;   outline: none;
+    box-sizing: border-box;
+}
+[id] {
+    scroll-margin-top: 2rem;
+}
+/* =============== Modern marquee =================================== */
+section {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin: 2rem;
+    padding: 1rem 0 1rem 0;
+    display: flex; gap: 20px;
+    overflow: hidden;
+}
+section:hover ul {
+    animation-play-state: paused;
+}
+ul {
+    list-style: none;
+    display: flex; gap: 20px;
+    animation: slide 8s linear infinite;
+}
+@keyframes slide {
+    to {transform: translateX(calc(-100% - 20px));}
+}

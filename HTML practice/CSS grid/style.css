@@ -1,0 +1,64 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+[id] {
+    scroll-margin-top: 2rem;
+}
+
+/* ================ CSS grid : for cards ============================================ */
+.container1 {
+    border: 2px solid red; min-height: 100vh; margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%),1fr)); /*will stretch to fill available space */
+    /*grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); will not stretch to fill available space*/
+    grid-template-rows: auto;
+    justify-content: center;
+    align-content: center;
+    gap: 10px 20px;     /* 10px rowise, 20px columnwise */
+}
+.container1 > .item {
+    height: 150px;
+    background-color: blue;
+}
+.container1 > .item:nth-child(1) {
+    background-color: pink;
+    /*grid-column: span 2;   is like colspan and cells will shift accordingly. Cells will only shift,they will not overlap*/
+    /*grid-row: span 2;      /*is like rowspan and cells will shift accordingly. Cells will only shift,they will not overlap*/
+    
+}
+/*================= CSS grid : for table ============================================*/
+.container2 {
+    border: 2px solid red; min-height: 100vh; margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+}
+.container2 > .item {
+    background-color: blue;
+}
+/* ============== CSS grid : for basic web layout =========================================== */
+.container3 {
+    border: 2px solid red; min-height: 100vh; margin: 1rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;  /* header main footer */
+}
+.container3 > .item:nth-child(1) {    /* for header */
+    background-color: lightpink;
+}
+.container3 > .item:nth-child(2) {  /* for main */
+    background-color: lightskyblue;
+}
+.container3 > .item:nth-child(3) {  /* for footer */
+    background-color: lightgray;
+}

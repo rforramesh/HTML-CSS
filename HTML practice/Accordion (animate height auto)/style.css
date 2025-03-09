@@ -1,0 +1,57 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;      padding: 0;
+    border: none;   outline: none;
+    box-sizing: border-box;
+}
+[id] {
+    scroll-margin-top: 2rem;
+}
+
+/*===================== Accordion : using interpolate-size ============================*/
+.box1 {
+    margin: 0 1rem; padding: 0 1rem; background-color: #eee;
+    height: 0; overflow: hidden;
+    transition: all 1s ease;
+    transition-behavior: allow-discrete;
+    interpolate-size: allow-keywords;   /*helps todo transitions on auto,fit-content,max-content */
+}
+#btn1:checked ~ .box1 {
+    height: auto;  
+    padding: 1rem 1rem;
+}
+
+/*================= Accordion : using display:grid ============================ */
+.box2 {
+    margin: 0 1rem; padding: 0 1rem; background-color: #eee;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: all 1s ease;
+}
+.box2 > p {
+    overflow: hidden;
+}
+#btn2:checked ~ .box2 {
+    grid-template-rows: 1fr;
+    padding: 1rem 1rem;
+}
+
+/*==================== Accordion : using details tag & interpolate-size ============================*/
+details {
+    background-color: #eee;
+    margin: 10px; padding: 10px;
+}
+details::details-content {      /* ::details-content is in-built pseudo*/
+    margin: 0 1rem; padding: 0 1rem; background-color: #eee;
+    height: 0; overflow: hidden;
+    transition: all 1s ease;
+    transition-behavior: allow-discrete;
+    interpolate-size: allow-keywords;    /*helps todo transitions on auto,fit-content,max-content */
+}
+details[open]::details-content {
+    height: auto;
+    padding: 1rem 1rem;
+}

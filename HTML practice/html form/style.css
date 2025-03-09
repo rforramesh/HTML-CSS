@@ -1,0 +1,40 @@
+html{
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+*{
+    margin: 0;      padding: 0;
+    /* border: none;   outline: none; */
+    box-sizing: border-box;
+}
+
+/*------------------ html form -----------------------------------------*/
+
+form {
+    width: 70%;
+    margin: 1rem auto 1rem auto;
+    border: 2px solid red;
+    padding: .5rem;
+}
+form > fieldset {
+    padding: 1rem;    
+}
+input{
+    margin: 5px 0 5px 0;
+}
+input:invalid {
+    outline: 2px solid red;
+    border: none;
+}
+/* input:invalid:not(:placeholder-shown) {
+    outline: 2px solid red;
+    border: none;
+} */
+/* input:valid {
+    outline: 2px solid green;
+    border: none;
+} */
+/* input:invalid ~ button[type="submit"] {
+    opacity: 0.6; 
+    pointer-events: none;
+} */

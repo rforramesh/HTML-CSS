@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html img</title>
+    <meta name="description" content="info about page">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h3>**While writing img tag,it is very important to specify alt="" (incase img is not available) & 
+        (width or height) to prevent occupation of more space if CSS is not available. <br>
+        **Also, if we only set img width, then height is auto & vice-versa
+    </h3>
+    <h3>**loading="lazy" : imgaes will load asynchronously( i.e. loading parallely will html page rendering)</h3>
+    <h3>**Remove spaces between 2 images : inline elements like img,button acts like words therefore they have some extra space around them. To remove these extra space, we can comment out the space in .html file, or img{display: block} or img{vertical-align:center}</h3>
+    <br>
+    	<img loading="lazy" src="./../images - jpg/deer.jpg" alt="img1" width="400"><!--
+inline elements like img, button have some extra space around them
+           --><img loading="lazy" src="./../images - jpg/dolphin.jpg" alt="img1" width="400">
+
+</body>
+</html>

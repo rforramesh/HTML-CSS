@@ -1,0 +1,6 @@
+Modern Google - https://codepen.io/jczimm/full/vEBpoL
+Redirecting Loader - https://codepen.io/mr_alien/full/FDLjg
+Square Loader - https://codepen.io/tashfene/full/raEqrJ
+Animated Loader - https://codepen.io/majci23/full/NqdXvy
+Loading Bouncy ball - https://codepen.io/wabeshew/full/XdbBdM
+Bootstrap spinners - https://getbootstrap.com/docs/5.3/components/spinners/

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preloader</title>
+    <meta name="description" content="Preloader">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        //After html page is fully loaded, make the preloader disappear
+        //<body onload="document.getElementById('preloader').style.display='none';"> OR
+        window.onload = function () {
+            let x = document.getElementById('preloader');
+            x.style.opacity = 0;
+            setTimeout(function () { //setTimeout(fires once) whereas setInterval(fires repeatedly)
+                x.style.display = 'none';//calling after 1s so that transition(opacity) can happen
+            }, 1000);
+        }
+    </script>
+</head>
+<body>
+    <div id="preloader"></div>          <!--=== Preloader ===-->
+
+
+    <section>
+        <h1>Welcome <br>
+            **We can download gif from pinterest or get customized loaders from Bootstrap/Codepen**
+        </h1>
+        <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, beatae?</div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, error. <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/x3feuvDAUkA?si=AS84ZD1_OjznQB_1"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, error <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/F7MMotvSgtY?si=FRwwB5_ATHj2AMLl"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, error. <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/sRmn79a_H1g?si=5kTTG3fNum9dE6sC"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, error. <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/X6hIuKJzFoU?si=ttgYnCaaokJbDy2I"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, error. <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/X8VzyqOU440?si=-qAhLRPlH1lSP23v"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, error. <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/kyOb7uB32zY?si=GSfDHCzB8qQvXWDg"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, error. <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/kyOb7uB32zY?si=GSfDHCzB8qQvXWDg"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, error. <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/2fhDs4iiKtM?si=PJTeWeiuzrmKoQwr"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, alias. <br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/I_vzMKgLdLk?si=GhyeW2ZZx8YWdsOY"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, inventore!</div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML table</title>
+
+    <meta name="description" content="This is my first website.">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h4>rowspan="2" : means merge 2 cells vertically(up-down)</h4>
+    <h4>colspan="2" : means merge 2 cells horizontally(left-right)</h4>
+    <h4>In table, each cell is ==> a td tag</h4>
+    <h4>:nth-of-type() :- allows you to select element by considering tag name</h4>
+    <h4>:nth-child() :- allows you to select any element</h4>
+
+    <div class="table-container" style="border: 2px solid red;">
+        <table class="table-content">
+            <caption>Caption : Details</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll</th>
+                    <th>place</th>
+                    <th>type</th>
+                    <th>isActive</th>
+                    <th>statuts</th>
+                    <th>CrtByTokenID</th>
+                    <th>CrtDate</th>
+                    <th>MdDate</th>
+                    <th>Name2</th>
+                    <th>Name3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Raja Rox</td>
+                    <td>27</td>
+                    <td>LaljiPadaSanjayNagar</td>
+                    <td>Stud</td>
+                    <td>Lazy</td>
+                    <td>mingle</td>
+                    <td>NULL</td>
+                    <td>Nashedi</td>
+                    <td>Aakash</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>Lalji pada</td>
+                    <td>Stud</td>
+                    <td>Lazy</td>
+                    <td>mingle</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>Nashedi</td>
+                    <td>Aakash</td>
+                </tr>
+                <tr>
+                    <td>Insiya</td>
+                    <td>40</td>
+                    <td>Sanjay Nagar</td>
+                    <td>Stud</td>
+                    <td>Lazy</td>
+                    <td>mingle</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>Nashedi</td>
+                    <td>Aakash</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

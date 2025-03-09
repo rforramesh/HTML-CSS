@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <meta name="description" content="Slider">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h3>Movies - Simple Slider & Alternative to flex-wrap</h3>
+    <section id="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+    <button onclick="func('back')">Back</button>
+    <button onclick="func('next')">Next</button>
+    <script>
+        function func(str) {
+            let x = document.getElementById("box");
+            if (str === 'next') x.scrollBy({left: 100, behavior: "smooth"});
+            if (str === 'back') x.scrollBy({left: -100, behavior: "smooth"});
+        }
+    </script>
+</body>
+</html>

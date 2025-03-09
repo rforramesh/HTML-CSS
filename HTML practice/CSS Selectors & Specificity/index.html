@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:20px">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Specificity</title>
+    <meta name="description" content="CSS Specificity">
+    <style>
+        /*------------------- box1 --------------------------*/
+        .box1 {
+            background-color: red;
+        }
+        .box1 {
+            background-color: lightgreen;
+        }
+        .box1 {
+            background-color: aqua; /* this will apply */
+        }
+        /*------------------- box2 --------------------------*/
+        .box2 {
+            background-color: red;
+        }
+        #box2 {
+            background-color: lightgreen; /* this will apply as #id is more specific than .class */
+        }
+        .box2 {
+            background-color: aqua; 
+        }
+    </style>
+</head>
+<body>
+    <p class="box1">Lorem ipsum dolor sit amet.</p>
+    <p class="box2" id="box2">Lorem ipsum dolor sit amet.</p>
+    
+    <h2>Notes :- <br>
+        Specificity means how much we are specific while target a element.
+       Highest specificity will win & its style will be applied to the element. <br>
+       <h3>
+           Specificity value : <br>
+            !important (10,000) > inline css (1000) > #id selector (100) > .class selector/[attribute selector]/:pseudo-classes (10) > element selector (1) > universal selector i.e. * (0)
+       </h3>
+    </h2>
+// ================== CSS selectors ================================<br>
+* {}		             // universal selector <br>
+div {}		            // element i.e. tag selector  <br>
+[id] {}  OR  input[type="submit"] {}	// attribute selector <br>
+[data-color="primary"] {}    //attribute selector-we can write & select our custom attribute <br>
+#box {}		           // id selector <br>
+.box {}		           // class selector <br>
+div > p {}	 OR  .container > p{}  OR  .container > .box{}  // child selector (direct-child) <br>
+div    p {}  OR  .container    p{}  OR  .container    .box{}  // descendent selector (any-child)<br>
+.box  * {}		          // to apply to all child elements <br>
+.box::first-line {}  OR  .box::first-letter {}  		<br>
+.box:first-child {}				<br>
+.box:last-child {}				<br>
+.box:nth-child(1) {}				<br>
+.box:nth-of-type(even) {}			<br>
+p:nth-last-child(2) {}	          // niche se second child   <br>
+.box::before {content: " ";}  OR  .box::after {content: " ";}	//pseudo elements <br>
+.box::selection {}				<br>
+// ================================================================
+</body>
+</html>

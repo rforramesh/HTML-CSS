@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS : form validation</title>
+    <meta name="description" content="CSS : form validation">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Form Validation must be done on frontent as well as backend because someone can edit the html from frontend</h1>
+    <form action="javascript:void(0)">
+        <div class="box">
+            <label for="username">username<span class="required">*</span></label> <br>
+            <input type="text" id="username" placeholder="enter" required>
+        </div>
+        <div class="box">
+            <label for="mobile">mobile<span class="required">*</span></label> <br>
+            <input type="text" id="mobile" placeholder="enter" pattern="(\+91|0)?[789]{1}[0-9]{9}" required>
+            <div class="error_msg">incorrect mobile format</div>
+            <div class="hint">enter correct mobile format</div>
+        </div>
+        <div class="box">
+            <label for="email">email<span class="required">*</span></label> <br>
+            <input type="text" placeholder="enter" pattern="[a-zA-Z0-9._$#!%*?&\-\+]+@[a-zA-Z]+\.[a-zA-Z]{2,}" required>
+            <div class="error_msg">incorrect email format</div>
+            <div class="hint">enter correct email format</div>
+        </div>
+        <div class="box">
+            <label for="password">password<span class="required">*</span></label>  <br>
+            <input type="password" id="password" placeholder="enter" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[._@$#!%*?&\-\+])[a-zA-Z0-9._@$#!%*?&\-\+]{8,}"  required> 
+            <div class="error_msg">incorrect password format</div>
+            <div class="hint">enter correct email format</div>
+        </div>
+        <div class="box">
+            <label for="age">Age<span class="required">*</span></label>  <br>
+            <input type="number" id="age" placeholder="enter" min="18" max="28"  required> 
+            <div class="error_msg">age 18-28</div>
+            <div class="hint">age 18-28</div>
+        </div>
+        <input type="submit">
+    </form>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+*{
+    margin: 0;      padding: 0;
+    border: none;   outline: none;
+    box-sizing: border-box;
+}
+[id] {
+    scroll-margin-top: 2rem;
+}
+
+/* =========================== Nav bar ==================== */
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid black;
+    position: relative;
+}
+nav {
+    border: 2px solid green;
+    margin: 1rem;
+}
+nav > ul {
+    display: flex;
+    border: 2px solid red;
+}
+nav > ul li {
+    list-style: none;
+    position: relative;
+}
+nav > ul a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 1rem;
+    background-color: pink;
+}
+nav > ul a:hover {
+    background-color: grey; color: #fff;
+}
+nav > ul ul {
+    position: absolute; top: 100%; left: 0;
+    display: none;
+}
+nav > ul ul ul {
+    position: absolute; top: 0; left: 100%;
+    display: none;
+}
+nav > ul li:hover > ul {
+    display: block;
+}
+.menu-open, .menu-close {
+    padding: 0.5rem;
+    display: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width:800px) {
+    .menu-open {
+        display: inline-block;
+    }
+    .menu-close {
+        display: block; width: max-content;
+        margin: 2rem auto 2rem auto;
+        background-color: wheat;
+    }
+    nav > ul {
+        position: fixed; top: 0; left: 0;
+        display: block;
+        width: calc(100% - 100px); height: 100%;
+        overflow-y: auto;
+        background-color: lightgray;
+        transform: translateX(calc(100% + 100px));
+        transition: all .5s;
+        opacity: 1;
+    }
+    #menu:checked ~ ul {
+        transform: translateX(100px);
+    }
+    .sub-menu > ul{
+        position: static;
+        display: none;
+    }
+    .sub-menu:hover > ul{
+        display: none;
+    }
+    .sub-menu input[type="checkbox"]:checked ~ ul {
+        display: block;
+        background-color: gray; padding-left: 2rem;
+        a {
+            background-color: transparent;
+        }
+    }
+}
+
+/* ================ Search  box ============================= */
+.search-container {
+    border: 2px solid blue;
+    label {
+        display: inline-block;
+        padding: .5rem; background-color: lightgreen;
+        cursor: pointer;
+    }
+}
+.search-container > div {
+    border: 2px solid red;
+    position: absolute; top: 100%; left: 0;
+    width: 100%;
+    padding: 1rem;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: all .3s ease;
+    background-color: rgba(0,0,0,.6);
+    z-index: -1; text-align: center;
+    input, button {
+        outline: 1px solid; padding: .5rem;
+    }
+}
+#Search:checked ~ div {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}

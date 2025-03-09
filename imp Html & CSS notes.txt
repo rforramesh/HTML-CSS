@@ -1,0 +1,139 @@
+Notes :	html file should be always named as index.html because index is special name by which browser understands and shows index.html first
+	
+{*****Responsiveness
+1) We use flexbox, media query, relative units(% - for width/height, rem - for font),javascript  to make webpages responsive
+2) To make a element's width or height responsive : We can do this way -->{ width: 100%;    max-width: 250px;}    /* make width responsive */
+}
+
+{ * Flexbox
+ display : flex :- when used in parent container child becomes inline-block and also give responsiveness as it becomes flex.
+ flex-wrap : wrap;   /* parent property */
+ flex-direction : row ya column;  /*parent property*/
+ justify-content: center(or evenly space or space between):- aligns flex items horizontally.	/*parent property*/
+ align-content: center   :- aligns flex items vertically.	/*parent property*/ 
+}
+
+@media screen and (max-width:500px) {-}
+@media screen and (max-width:900px) and (min-width:500px) {-}
+
+Layout of websites : 
+<header> : contains <nav> bar
+<main>	 : contains <section> <article> <aside>
+	   Its contains main content of website and search engine sees the content in <main>
+	   Therefore put main content of website in <main> tag.
+<footer> : footer is at bottom
+
+
+{
+   Media : We can add 4 types of Media : <img><video><audio> <iframe>(we use iframe to embed maps or youtube videos or external html page ie <iframe src="url"></iframe>) 
+		figure tag is used to add any media with caption.
+}
+
+
+ <img> <audio> <video> are inline elements
+ <figure> <figcaption> <div> <p> are block elements : They are containers
+ we can convert any element into inline or block by using CSS property display
+
+
+link a part in same webpage :	<body id="top">		 <a href="#top">Back to top</a>
+
+Absolute lenght : pixels	Relative : % , em( lenght will be font-size multiplied by em value in pixels)
+
+How to link our email :  <a href="mailto:rforramesh409@gmail.com">Email</a>
+
+{
+ The float property was originally designed to allow content to wrap around  images  otherwise,
+ To float <div> we dont use float property instead use display:inline-block property
+ display : none :- the element and the space reserved  will vanish.
+ visibility : hidden :- the element will vanish but space will be reserved.
+ box-sizing : border-box;
+}
+
+{	*Most imp*
+ if we want to place a <div> to extreme right use :- .parent{display:flex} and .child{margin-left: auto;}
+ if we want to place a <div> to center        use :- .child{margin: 0 auto 0 auto;}
+}
+
+{
+ top:40px;position:relative; :-yeh property kisibhi container ko niche overlap(without having any effect on padosi elements)karta hai.
+ top:40px;position:sticky;   :- yeh property kisibhi conatiner ko screen se stick kr deta hai
+}
+
+{
+ line-height: 1.5; word-spacing: .25em ;letter-spacing: .5px; use this standard property as it is.
+ text-decoration : 2px solid(or wavy or dashed or dotted) red underline overline line-through;
+ text-shadow: 3px(hori) 6px(verti) 2px(radius) rgba(0, 0, 0, .3); use this property as it is.
+ box-shadow: 5px 5px 15px rgba(0,0,0,.9);	/*use to set box shadow*/
+ box-shadow: 0(hori) 0(verti) 20px(blur) 5px(width on all side) aqua, 5px 5px 0 0 black;	/*use to set glowing box*/
+ text-transform : capitalize or uppercase or lowercase
+}
+
+{
+ There are three types of lists in HTML : <ol>,<ul>,<dl> and nested lists(ol and ul). They are all block level elements.
+ We use anchor tag to create navigation bar and most of coding is done in anchor tag.
+}
+
+{	* transform property (use to give effect like rotate,move)
+   transform : translate(x,y) rotate(x,y,z) scale(x,y);
+	* transition (slows down the property change process)
+   transition : width(required property) 3s(duration of process) ease-in 2s(delay);
+	* Animation(we create object and apply animation on it)
+   animation : animation-name(calls animation method) 3s(duration)  ease-in/linear  2s(delay)  4(iteration)  alternate/normal(animation-direction);
+   @keyframes animation-name{ 	from{ } 	50%{ }		 to{ } 	}//*only top and left relative property works.*
+}
+
+{	*Form	(except <form> &  <fieldset> tag All other tags inside form are inline elements)
+ color,date,time,datetime-local,email,month,week,range,search,tel,url,sumit,reset,textarea,multiple radio(name should be same),
+ multiple checkbox(name should be same),dropdown-list using <select> and <option> tag,file,disabled,placeholder,readonly,required,
+ <fieldset>(block level element) k andar  <legend>,accept=".jpg,.mp4,.pdf" multiple,maxlength,autofocus,checked.
+}
+
+
+-----------------------------imp-------------------------------------------------
+overflow-x: hidden; /* Hide horizontal scrollbar */
+window.scrollTo(0,0);	/* scroll to top */
+clip-path: polygon(0 0, 100% 0, 100% 0,0 0);  //gayab hoing
+clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); //dikhai deing
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-size: 62.5%;
+}
+*{
+    margin: 0; padding: 0;
+    outline: none; border: none;
+    box-sizing: border-box; font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+::-webkit-scrollbar {
+  width: 1px;
+}
+::placeholder {
+  color: red;
+  opacity: 1; 
+}
+::selection {   	 /* while we copy or select */
+  color: red;
+  background: yellow;
+}
+user-select: none;   	/* we can't copy or select */
+
+html{
+	--color-1: red;			/* create a variable in CSS */
+}
+	 color: var(--color-1);
+border-top-width: 2px;
+border-top-style: dashed;
+border-top-color: red;
+---------------------------------imp end----------------------------------------------------
+
+SEO (Search Engine Optimization) :
+	1. Set ur title very nicely and to the point 
+	2. Set the meta description which search engines shows below website title :
+			<meta name="description" content="">
+	3. Set a favicon :	
+    			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	4. Add alt="" to every image
+	5. Main content and heading(heading always be in heading tag) should be in <main> tag
+
+

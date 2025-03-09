@@ -1,0 +1,50 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+[id] {
+    scroll-margin-top: 2rem;
+}
+/*============================================================*/
+.container > .item > img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+.container {
+    border: 2px solid red;
+    margin: 1rem; padding: 1rem;
+    display: flex;
+    gap: 5px
+}
+.container > .item {
+    border: 2px solid black;
+    width: 250px; height: 250px;
+    cursor: pointer;
+    transition: 0.5s;
+    filter: brightness(0);
+}
+.container > .item:hover {                        /* select current element */
+    filter: brightness(1);
+}
+.container > .item:hover + .item {                /* select next element */
+    filter: brightness(0.6);
+}
+.container > .item:hover + .item + .item{         /* select next-to-next element */
+    filter: brightness(0.4);
+}
+.container > .item:has(+ .item:hover) {          /* select previous element */
+    filter: brightness(0.6);
+}
+.container > .item:has(+ .item + .item:hover) { /* select previous-to-previous element */
+    filter: brightness(0.4);
+}

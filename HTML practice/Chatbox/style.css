@@ -1,0 +1,27 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+[id] {
+    scroll-margin-top: 2rem;
+}
+/* =================== Chatbox : using textarea ============================================= */
+textarea {
+    border: 2px solid black; margin: 1rem;
+    width: 200px; field-sizing: content;
+    resize: none;
+}
+
+/* =================== Chatbox : using div(contenteditable) ============================================= */
+.box {
+    border: 2px solid black; margin: 1rem;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html form</title>
+    <meta name="description" content="html form">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<p>
+    *****form & fieldset are block element, except this two all other tags used inside form are inline elements<br>
+    *****action="" :- here we specify our backend api<br>
+    *****For html in-built validation,we use attributes like required,disabled,pattern,maxlength,min-max,type-email,number,etc  <br>
+    ****While creating radio button or checkbox,we need to specify their resp. values using value="" and with same name="" attribute <br>
+    ****Imp :- By default,html form sends data as formData() to backend as formData can store file inputs
+    We know, formData() obj is like hashmap i.e. key-value pair data structure(js in-built). 
+    Therefore,we must Always include name="" attribute inside input tag because name="" acts as key & value="" acts as value for formData() obj that will be sent to backend.
+</p>
+
+    <form action="/Save" method="post"> <!-- specify backend api ( or C# Controller)  -->
+        <fieldset>
+            <legend>My Form</legend>
+            <label>ID : <input type="text" name="ID" value="27"  disabled></label><br>
+            <label>Username <span style="color:red;">*</span> : <input type="text" name="username" required placeholder="required" autofocus></label><br>
+            <label>Password : <input type="password" name="password" required></label><br>
+            <label>Mobile : <input type="text" name="mobile" pattern="(\+91|0)?[789]{1}[0-9]{9}" placeholder="using regex"></label><br>
+            <label>Email : <input type="email" name="email"></label><br>
+            <label>Place : <input type="text" name="place" maxlength="5" required  placeholder="using maxlength"></label><br>
+            <label>Age : <input type="number" name="age" min="18" max="99"></label><br>
+            <label>D.O.B : <input type="date" name="dob"></label><br>
+            <div>Gender : 
+                <label><input type="radio" name="gender" value="Male">Male</label>
+                <label><input type="radio" name="gender" value="Female">Female</label>
+            </d><br>
+            <div>Languages : 
+                <label><input type="checkbox" name="language" value="C"> C</label>
+                <label><input type="checkbox" name="language" value="C++"> C++</label>
+                <label><input type="checkbox" name="language" value="Java"> Java</label>
+            </d><br>
+            <label>Resume : <input type="file" name="file" accept=".pdf,.jpg" multiple></label><br>
+            <label>Comment : <br>
+                <textarea name="comment" rows="2" cols="30" placeholder="using spellcheck=true" spellcheck="true"></textarea>
+            </label> <br>
+            <label>Select fruits(Dropdown1) : 
+                <select name="fruits">
+                    <option value="--none--">--none--</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Banana">Banana</option>
+                </select>
+            </label> <br>
+            <label>Select State(Dropdown2) : 
+                <input type="text" name="state" list="list">
+                <datalist id="list">
+                    <option value="Maharashtra">
+                    <option value="Uttar pradesh">
+                    <option value="Gujarat">
+                </datalist>
+            </label><br>
+            <label><input type="submit" value="Submit"></label>
+            <label><input type="reset" value="Reset"></label>
+        </fieldset>
+    </form>
+
+</body>
+</html>

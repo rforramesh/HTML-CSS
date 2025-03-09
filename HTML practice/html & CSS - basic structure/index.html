@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html basic structure</title>
+    <meta name="description" content="html basic structure">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="./angularjs" async></script>
+    <script src="./bootstrap" async></script>
+</head>
+<body>
+    <header>
+        <nav>
+            I am a nav tag used to write navigation bar or menu
+        </nav>
+    </header>
+
+    <main>
+        <section> I am section1 </section>
+        <section> I am section2 </section>
+        <article>
+            <p>
+                I am article tag used to write article, blog, post, etc.
+            </p>
+            <p>
+                We can include script inside head tag or at the bottom of body tag.
+                if script is included inside head,then it blocks HTML rendering i.e. it  
+                first loads & executes the script and then the HTML will render. 
+                So we use keywords like async or defer with script tag inside head tag to achieve parallel 
+                loading of scripts & HTML rendering.
+                [ Best practice : scripts that doesn't interact with current html page like angualrjs, jquery, bootstrap,other libraries,etc 
+                include it inside head tag with async keyword. scripts that interacts with current html page like myscript.js, 
+                include it at the bottom of the body tag. ]
+            </p>
+        </article>
+    </main>
+
+    <footer>
+        I am footer tag
+    </footer>
+    
+    <script src="./myScript.js"></script>           <!-- placed at the bottom as it interacts with current html page -->
+    <noscript>js not enabled/supported</noscript>
+</body>
+</html>

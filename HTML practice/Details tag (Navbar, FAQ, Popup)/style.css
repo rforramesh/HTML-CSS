@@ -1,0 +1,201 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+[id] {
+    scroll-margin-top: 2rem;
+}
+
+/*================= Dropdown navbar using details tag ===========================================*/
+nav {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav details {
+    position: relative;
+    display: inline-block;
+    border: 1px solid red;
+    background-color: #333;
+    color: white;
+}
+
+nav>details:nth-of-type(1)>summary {
+    /*for Home:removing arrow marker of details tag*/
+    list-style: none;
+}
+
+nav details summary {
+    cursor: pointer;
+    padding: 10px;
+}
+
+nav details summary:hover {
+    background-color: #555;
+}
+
+nav details[open]>summary {
+    background-color: #555;
+}
+
+nav>details>div {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    width: max-content;
+}
+
+nav details div a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+}
+
+nav details div a:hover {
+    background-color: #555;
+}
+
+.MenuBtn {
+    color: white;
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav>details {
+        display: none;
+    }
+
+    .MenuBtn {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    #MenuBtn:checked~details {
+        display: block;
+    }
+
+    nav details div {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+
+/*--================= simple menu using details tag ================ */
+.section1>details {
+    margin: 1rem;
+    border: 1px solid red;
+    display: inline-block;
+    position: relative;
+}
+
+.section1>details>summary {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.section1>details[open]>summary {
+    background-color: #f0f2fb;
+}
+
+.section1>details>div {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: max-content;
+    border-radius: 5px;
+}
+
+.section1>details div a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+}
+
+.section1>details div a:hover {
+    background-color: #f0f2fb;
+}
+
+/*--================= FAQ (i.e. Accordion) using details tag ================ */
+.section2 {
+    border: 2px solid red; margin: 10px; padding: 10px;
+}
+
+.section2 > details > summary {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f1f1f1;
+    margin-bottom: 5px;
+}
+
+.section2 > details > summary:hover {
+    background-color: #ddd;
+}
+
+.section2 > details[open]>summary {
+    background-color: #ddd;
+}
+
+.section2 > details > div {
+    background-color: #f1f1f1; padding: 10px;
+}
+.section2 > details::details-content {      /* animate  height:auto*/
+    height: 0; overflow: hidden;
+    transition: all 1s ease;
+    transition-behavior: allow-discrete;
+    interpolate-size: allow-keywords;
+}
+.section2 > details[open]::details-content {
+    height: auto;
+}
+
+/*--================= Popup using details tag ================ */
+.section3 {
+    border: 2px solid red; margin: 10px; padding: 10px;
+    height: 30vh;
+    position: relative;       /* act as container for Popup */
+}
+.section3 > details > summary {
+    padding: 10px; border: 1px solid black;
+    cursor: pointer;
+    display: inline-block;  /* to hide details tag's arrow marker */
+}
+.section3 > details[open] > summary {
+    background-color: #ddd;
+}
+.section3 > details > div {
+    position: absolute; left: 50%; top: 50%; /* to place at center of container*/
+    transform: translate(-50%,-50%); /* to place at center of container */
+    background-color: #f1f1f1; border: 1px solid #ccc;
+    padding: 10px; 
+    border-radius: 8px;
+}
+.section3 > details > div > button {
+    margin: 10px; padding: 10px;
+    font-weight: bold;
+    background-color: #ff4d4d; color: white; 
+    cursor: pointer;
+}

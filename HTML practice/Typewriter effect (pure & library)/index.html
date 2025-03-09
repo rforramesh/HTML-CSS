@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewritter effect</title>
+    <meta name="description" content="Typewritter effect">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+</head>
+
+<body>
+    ================ using library =====================================
+    <h1>I am a <span class="text"></span> </h1>
+    <script>
+        var typed = new Typed('.text', {
+            strings: ["Programmer", "Coder", "Rider"],
+            typeSpeed: 150,
+            backSpeed: 150,
+            loop: true
+        });
+    </script>
+
+
+    ==================== pure =========================================
+    <style>
+        .box {
+            margin: 1rem; position: relative; width: max-content;
+        }
+        .box::after {
+            content: "";
+            position: absolute; left: 0; top: 0;
+            width: 100%; height: 100%;
+            border-left: 2px solid black;
+            background-color: #fff;
+            animation: slide 4s steps(12) infinite;
+        }
+        @keyframes slide {
+            40%,60%   { transform: translateX(100%); }
+            /* 50%  { transform: translateX(100%); } */
+            100% { transform: translateX(0%); }
+        }
+    </style>
+    <h1>I am a <spans class="box">qwert yoyo</spans></h1>
+    <script>
+        let box = document.querySelector(".box");
+        func();
+        setInterval(func, 12000);   //fires after 12s
+        function func() {
+            setTimeout(() => { box.textContent = "Programmer"; }, 0);
+            setTimeout(() => { box.textContent = "Coder"; }, 4000);
+            setTimeout(() => { box.textContent = "Rider"; }, 80000);
+        }
+    </script>
+</body>
+</html>

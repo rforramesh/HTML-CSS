@@ -1,0 +1,31 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;      padding: 0;
+    border: none;   outline: none;
+    box-sizing: border-box;
+}
+[id] {
+    scroll-margin-top: 2rem;
+}
+/* ================= CSS Flexbox====================== */
+.container {
+    border: 2px solid red; padding: 1rem;
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;        /* horizontally */
+    align-content: center;          /* vertically */
+    gap: 40px 5px;  /* 40px rowise gap 5px columnwise gap */
+    /* flex-direction: row;  :-  row is by default*/
+}
+.child {
+    background-color: lightblue;
+    border: 2px solid blue;
+    width: 100px; height: 100px;
+    flex-grow: 1;       /*will grow(expand) element to fill the available space */
+    /* flex-shrink: 0;      prevents the shrinking of child element */
+    /* flex : 1(flex-grow)  1(flex-shrink)   200px(flex-basis); */
+}

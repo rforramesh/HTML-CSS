@@ -1,0 +1,38 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;      padding: 0;
+    border: none;   outline: none;
+    box-sizing: border-box;
+}
+
+/* ====================== Scroll to another section ================================================= */
+
+section {
+    margin: 2rem; padding: 1rem;
+    border: 2px solid red;
+    height: 100vh;
+}
+
+section:target {
+    scroll-margin-top: 5rem;
+    animation: target 2s;
+}
+@keyframes target {
+    to { box-shadow: 0 0 10px 10px rgba(0,0,0,0.5); }
+}
+
+/* We can use :
+[id] { scroll-margin-top: 2rem; }           
+OR
+:target { scroll-margin-top: 2rem; }
+div:target { scroll-margin-top: 2rem; }
+*/
+
+
+
+
+
