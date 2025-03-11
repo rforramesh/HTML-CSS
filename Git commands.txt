@@ -4,5 +4,5 @@ Check unstaged 	=> git status
 Stage files	=> git add <filename> or git add .
 Commit  	=> git commit -m "Your message"
 Commit history 	=> git log
-push 		= > git pull origin main
-fetch or pull 	=> git push origin main
+push 		= > git pull OR git pull origin main
+fetch or pull 	=> git push OR git push origin main
