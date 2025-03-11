@@ -133,8 +133,10 @@ OR  We can use <div contenteditable="true">
     background-color: blue;
 }
 
-
-
+**** :empty ========================================================================================
+div:empty {display: none:}
+:empty targets an element that has no child elements, no text content, no comments but can have only spaces
+It’s commonly used to apply styles to elements like div, span, or p when they are completely empty.
 
 
 
