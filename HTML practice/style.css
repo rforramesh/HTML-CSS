@@ -10,27 +10,4 @@ html {
 }
 
 /* ====================== Tabs  ================================================= */
-.container {
-    margin: 1rem; padding: 1rem;
-    display: flex; flex-wrap: wrap;
-}
-.container > label {
-    display: inline-block;
-    background-color: #ccc; font-weight: bold; padding: 1rem; cursor: pointer;
-    order: 1;
-}
-.container > .tab-content {
-    background-color: #eee; padding: 10px;
-    display: none;
-    width: 100%; 
-    order: 2;  
-}
-.container > input[type="radio"]:checked + label + .tab-content {
-    display: block;
-}
-.container > input[type="radio"]:checked + label {
-    background-color: gray; color: white;
-}
-.container > label:hover {
-    background-color: gray; color: white;
-}
+

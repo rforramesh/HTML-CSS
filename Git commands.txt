@@ -2,6 +2,7 @@ git remote add origin https://github.com/rforramesh/HTML-CSS.git
 
 Check unstaged 	=> git status
 Stage files	=> git add <filename> or git add .
-Commit files 	=> git commit -m "Your message"
+Commit  	=> git commit -m "Your message"
+Commit history 	=> git log
 push 		= > git pull origin main
 fetch or pull 	=> git push origin main
