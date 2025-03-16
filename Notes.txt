@@ -1,3 +1,4 @@
+***** ================ by default, HTML is  responsive =================================================================
 Note :- Ways to achieve click event in html :- using js, using input:checked, using <details> tag
 *****CSS variable--------------------------------------------------------------------------------------------------
 :root{			// : root{} is for global scope
@@ -137,6 +138,61 @@ OR  We can use <div contenteditable="true">
 div:empty {display: none:}
 :empty targets an element that has no child elements, no text content, no comments but can have only spaces
 It’s commonly used to apply styles to elements like div, span, or p when they are completely empty.
+
+***** margin vs positioning vs translate & width/height vs scale ====================================
+margin or positioning or translate : all this can be used to move an object(element) from a place to another
+1) margin : We can use margin to move an object from one place to another. It uses browser's CPU
+   E.g. button:hover + div{  margin-left: 50vw; }
+2) positioning : We can use position:relative/absolute to move an object. It uses browser's CPU
+   E.g. button:hover + div{   left: 50vw; top: 0;   } 
+3) translate : transform:translate can be used to move an object from its place. It uses browser's GPU
+   E.g. button:hover + div{  transform: translateX(50vw);   }
+
+width/height vs scale : all this can be used to increase or decrease the size of an object(element).
+1) width/height : can be used to increase/decrease size of an object. It uses browser's CPU
+   E.g. width: 50vw; OR height: 0;
+2) scale : can be used to increase/decrease size of an object. It uses browser's GPU
+   E.g. transform: scale(5, 1); 5-increase width,1-height remains as it is
+    	transform: scale(0, 1); 0-decrease width,1-height remains as it is
+    	transform: scale(1, 5); 1-width remains as it is,5-increase height
+    	transform: scale(1, 0); 1-width remains as it is,0-decrease height
+
+To move object or increase/decrease size of object for transition/animation : Go with translate & scale 
+i.e. property that uses GPU
+
+button::after {		//Button underline hover effect
+    content: "";
+    position: absolute; left: 0; top: 100%;
+    width: 100%;
+    height: 5px; 
+    background-color: gold;
+    transition: transform 0.3s ease;
+    transform: scale(0, 1);
+    transform-origin: left;	//by default scale starts from center
+}
+button:hover::after{
+    transform: scale(1, 1);
+}
+
+
+***** CSS : Make element non-clickable =========================================================================
+pointer-events: none;	//You won’t be able to hover, click on any element, including links, buttons, or form inputs.
+
+***** window.onload VS load VS document.readyState =================================================================
+window.onload : fires when the entire page and all its resources (like images, CSS, and scripts) have fully loaded.
+window.onload = function() {
+  console.log('Page has fully loaded!');
+};
+
+window.addEventListener('load') :- alternative to window.onload
+
+document.readyState :- document.readyState is a property of the document object that gives you the current loading state of the document It has 3 states :-
+loading: The document is still loading.
+interactive: The document has been completely loaded and parsed, but sub-resources like images might still be loading.
+complete: The document and all its resources (images, stylesheets, etc.) have fully loaded.
+
+
+
 
 
 

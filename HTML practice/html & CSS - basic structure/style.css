@@ -8,8 +8,11 @@ html{
     border: 0; outline: 0;
     box-sizing: border-box; 	/*i.e. content+padding+border = width or height */
 }
-[id] {	 /*  [attribute selector] : targets all elements that have attribute id */
-    scroll-margin-top: 2rem;	    /* 2rem means 2 X 16px = 32px */
+*::before, *::after{
+    box-sizing: border-box;
+}
+:target {
+    scroll-margin-top: 2rem;
 }
 /**********************************************************/
 

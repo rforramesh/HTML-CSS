@@ -12,7 +12,7 @@ html {
 }
 /* ================ Masonry Layout ============================================ */
 .container {
-    columns: 3;
+    columns: 3;   /* OR column-count: 3; */
 }
 .container > img, .container > p {
     width: 100%;

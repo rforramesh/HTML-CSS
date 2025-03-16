@@ -38,6 +38,17 @@ html {
     grid-template-rows: 1fr;
     padding: 1rem 1rem;
 }
+/*================= Accordion : using clip-path with position:absolute ============================ */
+.box3 {
+    margin: 1rem; padding: 1rem; 
+    background-color: #eee;
+    clip-path: polygon(0 0, 100% 0, 100% 0,0 0);  /* gayab hoing */
+    transition: clip-path 1s ease;
+    position: absolute;
+}
+#btn3:checked ~ .box3 {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* dikhai deing */
+}
 
 /*==================== Accordion : using details tag & interpolate-size ============================*/
 details {
