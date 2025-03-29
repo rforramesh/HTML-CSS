@@ -175,8 +175,12 @@ button:hover::after{
 }
 
 
-***** CSS : Make element non-clickable =========================================================================
-pointer-events: none;	//You won’t be able to hover, click on any element, including links, buttons, or form inputs.
+***** Make element non-clickable (means no mouse click & no keyboard click) =========================================================================
+pointer-events: none; 	- To make any html element & its entire subtree non-clickable via mouse.
+onclick="return false;" - To make any html element & its entire subtree non-clickable via keyboard.
+			  E.g. it is mostly used to make links non-clickable.
+tabindex="-1" 		- To make input element non-fousable via keyboard.
+So to make any html element truly non-clickable, use this 3 things together.
 
 ***** window.onload VS load VS document.readyState =================================================================
 window.onload : fires when the entire page and all its resources (like images, CSS, and scripts) have fully loaded.
@@ -191,6 +195,9 @@ loading: The document is still loading.
 interactive: The document has been completely loaded and parsed, but sub-resources like images might still be loading.
 complete: The document and all its resources (images, stylesheets, etc.) have fully loaded.
 
+***** Resolving text-overflow issues  : text-overflows outside the container ===============================
+1) limit the number of lines by creating 3 dots i.e. ellipses : by using -webkit-line-clamp property
+2) breaking the words so part of words gets wrap to next line fitting the container : by using overflow-wrap: break-word; property
 
 
 
