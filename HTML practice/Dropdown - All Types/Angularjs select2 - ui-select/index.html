@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ui-select</title>
+    <meta name="description" content="ui-select">
+    <link rel="stylesheet" href="style.css">
+    <!--============================ Include AngularJS : UI-Select ==========================-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.js"></script>
+    <!--=====================================================================================-->
+</head>
+
+<body ng-app="myApp">
+    <main ng-controller="myController">
+        <div> 
+            <h2>Angularjs - Normal Select</h2>
+            <select ng-model="model.countryID" ng-options="t.ID as t.Name for t in CountryList" ng-change="countryChanged(model.countryID)"></select>
+        </div>
+
+        <div>
+            <h2>Angularjs select2 called - ui-select (simple)</h2>
+            <ui-select ng-model="model.countryID" ng-change="countryChanged(model.countryID)" theme="bootstrap" style="width: 300px;">
+                <ui-select-match>{{$select.selected.Name}}</ui-select-match>
+                <ui-select-choices repeat="x.ID as x in CountryList | filter: $select.search" refresh-delay="300" refresh="refreshCountry($select.search)">
+                    <div ng-bind-html="x.Name | highlight: $select.search"></div>
+                    <small ng-bind-html="x.Code | highlight: $select.search"></small>   <!-- Optional -->
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div>
+            <h2>Angularjs select2 called - ui-select (multi-select)</h2>
+            <ui-select multiple ng-model="model.countryID" ng-change="countryChanged(model.countryID)" theme="bootstrap" style="width: 300px;">
+                <ui-select-match>{{$item.Name}}</ui-select-match>
+                <ui-select-choices repeat="x.ID as x in CountryList | filter: $select.search" refresh-delay="300" refresh="refreshCountry($select.search)">
+                    <div ng-bind-html="x.Name | highlight: $select.search"></div>
+                    <small ng-bind-html="x.Code | highlight: $select.search"></small>   <!-- Optional -->
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

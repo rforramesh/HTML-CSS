@@ -1,0 +1,11 @@
+There are different types of dropdowns :-
+
+1) nav dropdown : usually created using <ul> tag OR <details> tag.
+
+2) accordion dropdown : usually created using <details> tag for FAQs, PoPups
+
+3) form's dropdown : dropdown inside <form>, usually created using <select> tag.
+	There is also advanced select called select2 which offers searching and multi-select features.
+	jQuery's select2 plugin OR Angularjs in-built select2 called ui-select.
+
+4) search box with suggestions : <datalist> tag is ideal for creating search box.

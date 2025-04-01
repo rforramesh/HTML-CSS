@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select2 jQuery</title>
+    <meta name="description" content="select2 jQuery">
+    <!--==================== Include select2 jQuery =======================================================-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!--===================================================================================================-->
+</head>
+
+<body>
+    <main>
+        <!-- select2 having searching -->
+        <select name="state" id="temp1" onchange="func(this.value)">   <!--on selecting U.P, value is selected e.g. state : 4 -->
+            <option value="0"> </option>
+            <option value="1">Maharashtra</option>
+            <option value="2">Gujarat</option>
+            <option value="3">Karnataka</option>
+            <option value="4">Uttar Pradesh</option>
+            <option value="5">Madhya Pradesh</option>
+        </select>
+
+        <!-- select2 having searching & multi-select  -->
+        <select name="states" id="temp2" multiple="multiple">
+            <option value="0"> </option>
+            <option value="1">Maharashtra</option>
+            <option value="2">Gujarat</option>
+            <option value="3">Karnataka</option>
+            <option value="4">Uttar Pradesh</option>
+            <option value="5">Madhya Pradesh</option>
+        </select>
+
+    </main>
+
+    <script>
+        $(document).ready(function () {
+            $('#temp1').select2();          //initialize select2
+            $('#temp2').select2();
+        });
+
+        function func(val) {
+            console.log("func : ", val);
+        }        
+    </script>
+</body>
+
+</html>

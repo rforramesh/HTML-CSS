@@ -1,0 +1,29 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;      padding: 0;
+    border: none;   outline: none;
+    box-sizing: border-box;
+}
+*::before, *::after {
+    box-sizing: border-box;
+}
+:target {
+    scroll-margin-top: 2rem;
+}
+
+/*===================  ===============================================*/
+main {
+    margin: 1rem; padding: 1rem;
+    border: 2px solid red;
+}
+main > div {
+    margin: 2rem;
+}
+select {
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
