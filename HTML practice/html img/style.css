@@ -15,6 +15,8 @@ img {
     aspect-ratio: 1/1;  /* it means width to height ratio,so 1/1 is square */
     object-fit: cover;   /* zooms the img to fill the area,so some parts are cropped */
     /* object-fit: contain;    maintains the aspect ratio+try to fill the area */
+	
+   object-position: top right;
   }
 
 /* =============  for responsive image : Trick-2 ==================

@@ -19,8 +19,8 @@ html {
 .container1 {
     border: 2px solid red; min-height: 100vh; margin: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%),1fr)); /*will stretch to fill available space */
-    /*grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); will not stretch to fill available space*/
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%),1fr)); /* will stretch to fill available space */
+    grid-template-columns: repeat(auto-fill,minmax(min(300px, 100%),1fr));/* will not stretch to fill available space*/
     grid-template-rows: auto;
     justify-content: center;
     align-content: center;

@@ -34,6 +34,7 @@
             </ui-select>
         </div>
 
+
         <div>
             <h2>Angularjs select2 called - ui-select (multi-select)</h2>
             <ui-select multiple ng-model="model.countryID" ng-change="countryChanged(model.countryID)" theme="bootstrap" style="width: 300px;">
@@ -44,9 +45,41 @@
                 </ui-select-choices>
             </ui-select>
         </div>
+
+
+        <div>
+            <h2>Angularjs select2 called - ui-select (with image)</h2>
+            <ui-select ng-model="model.countryID" ng-change="countryChanged(model.countryID)" theme="bootstrap" style="width: 300px;">
+                <ui-select-match>
+                    <div>
+                        <img ng-src="{{$select.selected.Flag}}" alt="flag" width="24" height="16" style="vertical-align: top;">
+                        <span>{{$select.selected.Name}}</span>
+                    </div>
+                </ui-select-match>
+                <ui-select-choices repeat="x.ID as x in CountryList | filter: $select.search">
+                    <div>
+                        <img ng-src="{{x.Flag}}" alt="flag" width="23" height="15">
+                        <span>{{x.Name}}</span>
+                    </div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
     </main>
+
 
     <script src="./script.js"></script>
 </body>
-
 </html>
+<!--======== ng-src OR ng-href : both are similar used for creating dynamic path OR links ====================
+
+<img ng-src="{{ '/Flags/photo.png' }}" > 	//passing absolute path i.e. Not Dynamic
+<img ng-src"{{x.Path}}"  >			//passing a value i.e. dynamic
+<img ng-src="{{getFlag(x)}}" >			//calling a function that returns a path i.e. dynamic
+<img ng-src="/Controller/GetFlag?={{x.ID}}" >	//calling backend Controller(api) that returns a path
+
+<a ng-href="{{ 'https://www.google.com' }}  >	//passing absolute path i.e. Not Dynamic
+<a ng-href="{{ x.Path }} >			//passing a value i.e. dynamic
+<a ng-href="{{ getFlag(x) }}" >			//calling a function that returns a path i.e. dynamic
+<a ng-href="/Controller/GetFlag?={{x.ID}}"> 	//calling backend Controller(api) that returns a path 
+ -->
+
