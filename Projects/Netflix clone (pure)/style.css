@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    text-wrap: pretty;
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:target {
+    scroll-margin-top: 2rem;
+}
+
+header {
+    padding: 1.3rem 2.25rem;
+    background-color: #2D1F26;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: max-content;
+    img {
+        width: min(9rem, 100%);
+    }
+}
+
+.box-right select,
+.box-right button {
+    border: 1px solid white;
+    padding: 0.25rem 1rem;
+    border-radius: 100px;
+    color: black;
+    background-color: white;
+    font-weight: 600;
+    margin: 0.3rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.box-right select {
+    background-color: transparent;
+    color: white;
+    position: relative;
+
+    option {
+        color: black;
+    }
+}
+
+main {
+    padding: 0 2.25rem 1rem 2.25rem;
+    background-color: #2D1F26;
+}
+.hero-container {
+    overflow-x: hidden;
+    position: relative;
+    border-radius: 16px;
+    height: 75vh;
+    /* max-width: 90%;
+    margin: 0 auto 0 auto; */
+}
+.hero-container > .background {
+    position: absolute; top: 0; left: 0;
+    height: 100%;
+    display: flex;
+    animation: slide 12s linear infinite;
+    img {
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        cursor: pointer;
+    }
+}
+.hero-container > .background:hover {
+    animation-play-state: paused;
+}
+@keyframes slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); } /* -50% since there are two images */
+}
+
+.hero-container > .overlay {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(360deg, rgba(0, 0, 0, 0.90) 31.45%, rgba(0, 0, 0, 0.7) 75%, rgba(0, 0, 0, 0.55) 84.5%);
+}
+
+.hero-container > .content {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex; flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.text {
+    color: white;
+    /* background-color: cyan; */
+    max-width: 36rem;
+    text-align: center;
+}
+.text > p:nth-child(1) {
+    font-size: clamp(20px, 8vw, 40px);
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+.text > p:nth-child(2) {
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+.text > p:nth-child(3) {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+}
+.textButton {
+    /* border: 2px solid red; */
+    display: flex;  flex-wrap: wrap;
+    gap: 10px;
+    font-size: 1rem; font-weight: 400;
+}
+.textButton > div:nth-child(1) {
+    flex: 1 0 min(19rem, 100%);     /* set width */
+    min-height: 3.5rem;              /* set height */
+    position: relative;
+}
+.textButton > div:nth-child(2) {
+    flex: 1 0 min(15rem, 100%);     /* set width */
+    min-height: 3.5rem;              /* set height */
+}
+.textButton > div:nth-child(1) > input[type="email"]{
+    width: 100%; height: 100%;
+    padding: 1.5rem 1rem 0.5rem 1rem;
+    border-radius: 100px;
+    background-color: #3A3A3A; color: white;
+}
+.textButton > div:nth-child(1) > input[type="email"]:focus {
+    outline: 2px solid white;
+}
+.textButton > div:nth-child(2) > button {
+    width: 100%; height: 100%;
+    border-radius: 100px;
+    font-size: 1.5rem; font-weight: 500;
+    background: rgb(229, 9, 20); color: white;
+    cursor: pointer;
+}
+.textButton > div:nth-child(1) > label {
+    position: absolute; top: 50%; left: 1rem;
+    transform: translateY(-50%);
+    z-index: 2; 
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.textButton > div:nth-child(1) > label:has(+ input[type="email"]:focus) {
+    font-size: 0.75rem;
+    top: 1rem;
+}
+
+
+.trending-container {
+    width: 80%;
+    margin: 0 auto 0 auto;
+    position: relative;
+    color: white;
+}
+.trending-container > h2 {
+    font-family: sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 550; margin: 1rem 0 0.5rem 0;
+    color: #BEB4B4;
+}
+.trending-container > .btn-left, 
+.trending-container > .btn-right {
+    background-color: rgba(128, 128, 128, 0.4);
+    color: white; padding: 8px 2px;
+    font-size: 3rem; font-weight: 400;
+    border-radius: 16rem;
+    cursor: pointer;
+}
+.trending-container > .btn-left {
+    position: absolute; left: -5%; top: 45%; z-index: 3;
+}
+.trending-container > .btn-right {
+    position: absolute; right: -7%; top: 45%; z-index: 3;
+}
+.trending {
+    display: flex; flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    /* Style Scrollbar :
+    scrollbar-color: orange red;    // foreground(thumb) background(track)
+    scrollbar-width: none;           
+    */
+    counter-reset: i;                   /* CSS Counter */
+}
+.trending > div {
+    background-color: #ccc;
+    width: 8rem; height: 16rem; margin: 1rem;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative; cursor: pointer;
+    transition: scale 0.3s ease-in-out;
+    counter-increment: i +1;            /* increment CSS Counter by 1  */
+}
+.trending > div::before {
+    content: counter(i);
+    position: absolute; left: -1rem; top: -0.5rem; z-index: 2;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 4rem; font-weight: 900;
+    -webkit-text-stroke: 2px white;    /* gives solid border to text */
+    text-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.5);     /* gives shadow behind text */
+}
+.trending > div:hover {
+    scale: 1.05;
+}
+.trending > div:nth-of-type(1) {
+    background-image: url("./assets/images/deva.jpg");
+    margin-left: 1.2rem;
+}
+.trending > div:nth-of-type(2) {
+    background-image: url("./assets/images/pushpa2.jpg");
+}
+.trending > div:nth-of-type(3) {
+    background-image: url("./assets/images/dragon.jpg");
+}
+.trending > div:nth-of-type(4) {
+    background-image: url("./assets/images/chaava.jpg");
+}
+.trending > div:nth-of-type(5) {
+    background-image: url("./assets/images/officer.jpg");
+}
+.trending > div:nth-of-type(6) {
+    background-image: url("./assets/images/court.jpg");
+}
+.trending > div:nth-of-type(7) {
+    background-image: url("./assets/images/test.jpg");
+}
+.trending > div:nth-of-type(8) {
+    background-image: url("./assets/images/squidgame.jpg");
+}
+.trending > div:nth-of-type(9) {
+    background-image: url("./assets/images/khakee.jpg");
+}
+.trending > div:nth-of-type(10) {
+    background-image: url("./assets/images/resident.jpg");
+}
+
+.reason-container {
+    width: 80%;
+    margin: 1rem auto 1rem auto;
+    color: white;
+    h2 {
+        margin: 0.5rem 0; font-size: 2rem; font-weight: 700; 
+    }
+}
+.card-container {
+    display: flex;
+    gap: 0.6rem;
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+    }
+}
+.card-container > .card {
+    /* background-color: pink; */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1rem; padding: 1rem;
+    gap: 1rem;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);            /* blur background */
+
+    h3 {
+        font-size: 1.125rem; font-weight: 500;
+    }
+    p {
+        color: rgba(255,255,255,0.7);
+    }
+}
+.card-container > .card > p:nth-of-type(2) {
+    text-align: end;
+}
+.card-container > .card svg {
+    width: 3rem; height: 3rem;
+}
+
+.FAQ {
+    width: 80%;
+    margin: 2rem auto;
+    color: white;
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+.FAQ-item > details {
+   margin-top: 0.5rem;
+   font-size: 1.125rem;
+   font-weight: 500;
+}
+
+/* Animate height: auto */
+.FAQ-item > details::details-content { /* ::details-content is in-built pseudo*/
+    height: 0; overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    transition-behavior: allow-discrete;
+    interpolate-size: allow-keywords;    /*helps todo transitions on auto,fit-content,max-content */
+}
+.FAQ-item > details[open]::details-content {
+    height: auto;
+}
+
+.FAQ-item > details > summary {
+    padding: 1.5rem; border-radius: 1rem; background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px);
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+}
+.FAQ-item > details > div {
+    padding: 1.5rem; border-radius: 1rem; background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px);
+    margin-top: 0.5rem;
+}
+.FAQ-item > details > summary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.FAQ-item > details > summary::after {
+    content: "+";
+    position: absolute; top: 50%; right: 1.5rem; z-index: 3;
+    font-size: 2.5rem; font-weight: 250;
+    transform: translateY(-50%) rotate(0);
+}
+.FAQ-item > details[open] > summary::after {
+    transform: translateY(-50%) rotate(45deg);
+}
+.FAQ-item > details > div > p:nth-of-type(2) {
+    margin-top: 10px;
+}

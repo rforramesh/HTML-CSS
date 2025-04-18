@@ -34,3 +34,10 @@ figcaption {
     height: 150px; overflow: auto;  /* we can use rem also*/
 }
 =====================================================  */
+/*img {
+        width: auto;		it is more smooth
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+	*/
