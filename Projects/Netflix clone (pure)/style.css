@@ -234,6 +234,7 @@ main {
 .trending > div:hover {
     scale: 1.05;
 }
+
 .trending > div:nth-of-type(1) {
     background-image: url("./assets/images/deva.jpg");
     margin-left: 1.2rem;
@@ -357,4 +358,48 @@ main {
 }
 .FAQ-item > details > div > p:nth-of-type(2) {
     margin-top: 10px;
+}
+
+.Ready-To-Watch {
+    padding: 1rem;
+}
+.Ready-To-Watch > h3 {
+    text-align: center;
+    font-size: 1.2rem; font-weight: 400;
+    color: white; 
+    margin-bottom: 1rem;
+}
+
+footer {
+    background-color: #0F0F0F;  color: rgba(255, 255, 255, 0.7);
+    
+    padding: 4rem 1rem 4rem 1rem;
+    a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: underline;
+        display: inline-block;
+        margin: 5px;
+    }
+}
+footer > .box {
+    width: 90%; margin: auto;
+    line-height: 1.5; font-size: 0.875rem; font-weight: 400;
+} 
+footer > .box > .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%),1fr));
+    gap: 1rem;
+}
+footer select {
+    margin: 1.5rem 0;
+    background-color: transparent;
+    color: white; 
+    font-weight: 600;
+    padding: 0.25rem 1rem;
+    border-radius: 100px;
+    outline: 1px solid white;
+    cursor: pointer;
+    option {
+        color: black;
+    }
 }
