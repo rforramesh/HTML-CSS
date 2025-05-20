@@ -1,0 +1,87 @@
+==========================================================  Angularjs ===============================================================================
+
+***** Angularjs directives *****
+1) When to use curly braces : use curly braces only with pure html attributes and inside html content(i.e. innerHTML)
+	syntax : {{ expression }}  //expression means variableName OR functionName() OR an expression(the expression we can write in console.log(expression))
+	E.g. Using curly braces in html content(i.e. innerHTML) : 
+		<p>{{ firstname + ' ' + middlename + ' ' + lastname }}</p> 	//here variable firstname means $scope.firstname as we know we don't write $scope in html file
+		<p>MyName : {{ getFullName() }}</p>									// here function call getFullName() means $scope.getFullName()
+	E.g. Using curly braces in html attributes :
+		<img src="{{ func() }}" alt="pic-{{ func() }}" width="{{ myVariable }}" style="color: {{ id>0 ? 'green' : 'black' }}" class="btn btn-{{ id>0 ? 'primary' : 'warning' }}">
+		<a href="/controller/{{ id }}">
+	-- Note : Now we know, we use curly braces only inside pure html attributes & html content to make them dynamic
+2) When not to use curly braces : we direclty specify expression without curly braces(Direct Expression) inside non-pure html attributes OR ng-attributes
+	=> i.  ng-attributes that expects direct boolean expression (expression that returns boolean).Direct Boolean expression supports both variableName as well as functionName()
+			Suppose expression is not returning any boolean value, then it uses javascript trusy/falsy concepts(i.e. false,0,NaN,null,undefined,'' is falsy otherwise is trusy)
+			ng-show, ng-hide, ng-if, ng-disabled, ng-checked, ng-required    // here expression can be any variableName OR functionName()
+			E.g. ng-show="showUnit" 
+			     ng-disabled="func()" 		// in js, if a function is not returning any value then implicitly undefined is returned
+	=>ii.  ng-attributes that supports only variableName(non-boolean) 		: ng-model="obj.ID", ng-repeat="x in obj.arr", ng-options, ng-bind, ng-pattern
+	=>iii. ng-attributes that supports only functionCall(return-type void) 	: ng-click="func()", ng-change="fun()", ng-submit="fun()", ng-focus="fun()", ng-blur="fun()"
+			//We can call mulitple functions inside ng-change, ng-click, etc & the functions will execute one-by-one in the order they appear
+			ng-change="validateDate(); checkdepartureDate(); CheckAvailability()"
+
+// To reset ui-select select2 dropdown : always use object(ng-model)
+$scope.model.RowName = null;
+==========================================================  Kendo ===============================================================================
+
+columns: [		// Index page Kendo Grid 
+{
+    field: 'CargoNo', title: "Cargo No", 
+	template: function (dataItem) {				//Writing function to make dynamic
+           if (dataItem.ID != 0 && dataItem.LinkVisibility != "HIDE") {
+               return "<a href='\\#/BBYardDischarge/Item/"+dataItem.ID+"'>"+dataItem.CargoNo+"</a>";
+           } else {
+               return dataItem.CargoNo;    // Just return plain text
+           }
+    },
+	attributes: function(dataItem) { return { style: "text-align: right;",class: (dataItem.MappedUnit ? "" : "highlight-cell")};},
+},
+
+{ // Make a column upto 5 decimal places, if decimals set to 0 then we cannot enter decimal values
+    field: "MassMeasurementAmt", title: "Quantity", hidden: $scope.HideMass, editable: false, attributes: { style: "text-align: right;" },
+    editor: function (container, options) { $('<input name="' + options.field + '"/>').appendTo(container).kendoNumericTextBox({ decimals: 5, min: 0 }); }
+},
+
+***** Hide & Show column in Kendo grid *****
+$scope.bindGrid = function () {
+    var gridElement = $("#bulkcargogrid");	// Imp : reset grid by clearing old data 
+    var existingGrid = gridElement.data("kendoGrid");
+    if (existingGrid) {
+        existingGrid.destroy();
+        gridElement.empty();
+    }
+    
+    $scope.jobOrderCargoList = {	// initialize the grid obj(k-options)
+        dataSource: {
+            transport: {
+                read: {
+                    url: logstar.url('/GenCare/DBYardLoad/GridBulkDataPreAdvise'),
+                    data: function () {
+                        return {
+                            PreAdviseID: $scope.PreAdviseID || 0,
+                            ITVID: $scope.ITVID || 0,
+                            ShipmentID: $scope.ShipmentID || 0
+                        };
+                    }
+                }
+            },
+        },
+        columns: [
+            {
+                headerTemplate: "<input type='checkbox' ng-model='checked' ng-disabled='disableCheckbox()'  ng-click='selection.setItem(0)'/>",
+                template: "<input type='checkbox' ng-checked='selection.getItem(${JobID})' ng-disabled='disableCheckbox()' ng-click='selection.setItem(${JobID})'/>",
+                width: 30
+            },
+            { field: "CargoNo", title: "CargoNo" },
+            { field: "Unit", title: "Unit", hidden: $scope.HideUnit },
+            { field: "Mass", title: "Mass", hidden: $scope.HideMass },
+            { field: "Volume", title: "Volume", hidden: $scope.HideVolume }
+        ], 
+		dataBound: function (e) {  			// when grid is fully loaded into the DOM, then dataBound is automatically fired 
+                let data = $("#bulkcargogrid").data("kendoGrid").dataSource.data();
+        }
+    };
+}
+
+

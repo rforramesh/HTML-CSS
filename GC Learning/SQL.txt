@@ -1,0 +1,116 @@
+
+***** Order of Query Execution *****
+SELECT d.DepartmentName, COUNT(*) AS emp_count
+FROM Employees e
+JOIN Departments d ON d.DepartmentID = e.DepartmentID
+WHERE 	e.Isactive = 1 AND e.SiteID = 8
+		d.IsActive = 1 AND d.SiteID = 8
+GROUP BY d.DepartmentName
+HAVING COUNT(*) > 5
+ORDER BY emp_count DESC;
+
+
+Order of Query Execution :-  -> then where part -> then group by and having ->then select part ->then order by part
+1) First runs From part : The FROM clause, and subsequent JOINs are first executed to determine the total working set of data
+2) then where part :- 	By applying where conditions, it filters the total working set of data. 
+						Note : where part can only access tables,columns,aliases from From part
+3) then group by and having :- you should only need to use group by  when you have aggregate functions in your query.
+4) Now select part runs :- now select runs on the  total set of data(filtered)
+5) order by :- 	sorting the result set produced by select part.
+				Note : Since all the expressions in the SELECT part of the query have been computed, you can reference aliases in this clause.
+6) top / limit :- runs at the end
+
+**** CASE in SQL *****
+ using CASE, we can write conditions within our query i.e. it is like an if-else statement.
+If no conditions are true, it returns the value in the ELSE part. If there is no ELSE part and no conditions are true, it returns NULL.
+Note : When more than one condition can be true, the database will always return the first true condition and ignore the rest.
+syntax : 
+CASE
+    WHEN columnName=0 THEN result
+    WHEN columnName>0 THEN result
+    WHEN columnName<>0 THEN result
+    ELSE result
+END;
+E.g.
+1) CASE in Select part :-
+- 	select 
+		ManifestID,
+		CASE 
+			WHEN ja2.ID IS NULL THEN 0
+			WHEN ListPrice >= 50 AND ListPrice < 250 THEN 'Under $250'
+			WHEN sal2.SiteActivityID=35 THEN (SELECT CASE WHEN COUNT(*) > 0 THEN 'LinkSHOW' ELSE 'LinkHIDE' END FROM tostJobActivity WHERE TypeID = 46 AND CargoID=TSC.ID)
+			WHEN joc.StatusID = 3 THEN 'Activated'
+			WHEN joc.StatusID = 4 THEN ActualUnit - DeliveredUnit
+			ELSE 'LinkPending'
+		END AS "columnName",
+		IsActive,
+		SiteID
+	from tostJobActivity;
+2) CASE in where part
+	select followers,tweets,users from tableName
+	where (
+		CASE 
+			WHEN platform = 'Instagram' THEN followers
+			WHEN platform = 'Twitter' THEN tweets
+			ELSE users
+		END
+		) > 1000			-- returning the columnName and then comparing
+		AND IsActive = 1
+		AND SiteID = 8
+		AND Name = (CASE WHEN Name='test' THEN 'Admin' ELSE Name END) 
+		AND ShipmentID = (CASE WHEN @Shipment>0 THEN @ShipmentID ELSE ShipmentID END)		--filter in sql
+		AND CAST(CrtDate AS DATE) BETWEEN CAST(@FromDate AS DATE) AND CAST(@ToDate AS DATE)	--filter in sql 
+
+3) CASE in sum()
+	select 
+		SUM(Case when Code = 'TERMINAL' THEN MassClearance else 0 END) "TerminalClearance",
+		SUM(Case when Code = 'TRADER' THEN  MassClearance else 0 END) "TraderClearance",
+		SUM(Case when Code = 'CUSTOM' THEN  EntryQty else 0 END) "CustomClearance",
+		CASE WHEN (select Name from commCustomer where ID= M.VesselTraderID) IS NULL THEN '-'
+		ELSE (select Name from commCustomer where ID= M.VesselTraderID)
+		END "Customer"
+	from tostShipment
+	
+	
+***** How to use Web.config parameter inside query *****	 
+AND shp.ID IN (SELECT ShipmentID FROM tostShipmentClearance where (@IsKribi<>1) OR (@IsKribi=1 AND IsKMTClearance=1 AND IsPAKClearance=1 AND IsCustomClearance=1))
+
+***** CTE : finding Remaining Amounts *****
+-- CTE :-
+;WITH StowGet(CargoID, StowUnit, StowMass, StowVolume) AS (
+	select distinct CargoID, ISNULL(sum(UnitMeasurementAmt), 0), ISNULL(sum(MassMeasurementAmt), 0), ISNULL(sum(VolumeMeasurementAmt), 0) 
+	from tostStow where VoyageID=@VoyageID AND ShipmentID=@ShipmentID AND VesselHoldID=@VesselHoldID AND IsActive=1 AND SiteID=8
+	group by CargoID
+), VesselLoadGet(CargoID, LoadedUnit, LoadedMass, LoadedVolume) AS (
+	select distinct CargoID, ISNULL(sum(UnitMeasurementAmt), 0), ISNULL(sum(MassMeasurementAmt), 0), ISNULL(sum(VolumeMeasurementAmt), 0) 
+	from tostJobActivity where VoyageID=@VoyageID AND ShipmentID=@ShipmentID AND VesselHoldID=@VesselHoldID AND TypeID=43 AND IsActive=1 AND SiteID=8
+	group by CargoID
+)
+insert into @tbl
+select st.CargoID, 
+	ISNULL(st.StowUnit - vl.LoadedUnit, st.StowUnit) AS 'BalanceUnit', 
+	ISNULL(st.StowMass - vl.LoadedMass, st.StowMass) AS 'BalanceMass',
+	ISNULL(st.StowVolume - vl.LoadedVolume, st.StowVolume) AS 'BalanceVolume'
+from StowGet st
+JOIN VesselLoadGet vl on vl.CargoID=st.CargoID
+UNION ALL
+select sg.CargoID, sg.StowUnit AS 'BalanceUnit', sg.StowMass AS 'BalanceMass', sg.StowVolume AS 'BalanceVolume'  from StowGet sg
+where not exists (select 1 from VesselLoadGet);
+
+-- CTE :-
+;WITH StowGet(CargoID, StowUnit, StowMass, StowVolume) AS (
+	select distinct CargoID, ISNULL(sum(UnitMeasurementAmt), 0), ISNULL(sum(MassMeasurementAmt), 0), ISNULL(sum(VolumeMeasurementAmt), 0) 
+	from tostStow where VoyageID=@VoyageID AND ShipmentID=@ShipmentID AND VesselHoldID=@VesselHoldID AND IsActive=1 AND SiteID=8
+	group by CargoID
+), VesselLoadGet(CargoID, LoadedUnit, LoadedMass, LoadedVolume) AS (
+	select distinct CargoID, ISNULL(sum(UnitMeasurementAmt), 0), ISNULL(sum(MassMeasurementAmt), 0), ISNULL(sum(VolumeMeasurementAmt), 0) 
+	from tostJobActivity where VoyageID=@VoyageID AND ShipmentID=@ShipmentID AND VesselHoldID=@VesselHoldID AND TypeID=43 AND IsActive=1 AND SiteID=8
+	group by CargoID
+)
+select distinct st.CargoID, 
+	ISNULL(st.StowUnit - vl.LoadedUnit, st.StowUnit) AS 'BalanceUnit', 
+	ISNULL(st.StowMass - vl.LoadedMass, st.StowMass) AS 'BalanceMass',
+	ISNULL(st.StowVolume - vl.LoadedVolume, st.StowVolume) AS 'BalanceVolume'
+from StowGet st
+LEFT JOIN VesselLoadGet vl on vl.CargoID=st.CargoID;
+

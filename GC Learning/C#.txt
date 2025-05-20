@@ -1,0 +1,74 @@
+***** C# : remove duplicate entries if they exist : using hashmap *****
+var result = new List<dynamic>;
+Dictionary<int, dynamic> hashmap = new Dictionary<int, dynamic>(); 
+for (int i = 0; i < result.Count; i++)
+{
+        hashmap[result[i].ID] = result[i];
+}
+result = new List<dynamic>(hashmap.Values);
+
+**** C# supports Optional chaining (?.) and Nullish operator (??) ****
+var firstName = employees?[0]?.FirstName ?? "Unknown";
+
+
+**** LINQ(Language Integrated Query) i.e. using System.Linq; : is inbuilt linrary in C# ****
+1) var evens = numbers.Where(o => o % 2 == 0).ToList();		// Filter the collection
+   In JS : let evens = numbers.filter(o => o % 2 === 0);	
+2) bool exists = numbers.Any(o => o % 2 == 0); 				// Check a particular value exists in the collection or not. Collections.Any() always returns boolean 
+   In JS : let exists = numbers.some(o => o % 2 === 0);
+3) bool flag = numbers.All(o => o % 2 == 0);				// Returns true if every element in a collection satisfies the given condition otherwise returns false
+   In JS : let flag = numbers.every(o => o % 2 === 0);
+4) var number = numbers.FirstOrDefault(o => o > 10); 	// Returns first element that matches the condition OR returns Default(null/0)
+   In JS : let number = numbers.find(o => o > 10); 		// Returns first element that matches the condition OR returns undefined
+5) var sorted_list = people.OrderBy(o => o).ToList();		// Sorting a collection
+   var sorted_list = people.OrderByDescending(o => o.Age).ToList();
+	======= Traditional Approach for Sorting Collections Without using LINQ ========
+	Array.Sort(arr); OR Array.Reverse(arr);	// sorts(in-place) in-built arrays
+	ListObj.Sort();  OR ListObj.Reverse();	// sorts(in-place) ArrayLiist
+	============= Sorting in JS =================
+	arr.sort((num1, num2) => num1 - num2);  						// numbers : in-place sorting asc
+    arr.sort((num1, num2) => num2 - num1);  						// numbers : in-place sorting dsc
+    arr.sort((str1, str2) => str1.localeCompare(str2)); 			// String : in-place sorting asc
+    arr.sort((str1, str2) => str2.localeCompare(str1)); 			// String : in-place sorting dsc
+    arr.sort((obj1, obj2) => obj1.id - obj2.id);                 	// sorting array of custom objects
+    arr.sort((obj1, obj2) => obj1.name.localeCompare(obj2.name));   // sorting array of custom objects
+
+***** object vs var vs dynamic *****
+object : is a compile-time variable & superclass of all objects. So object can store any data-type. But for using it we need to do casting making it little slow.
+var : is a compile-time variable & similar to javascript var i.e. can store any data-type & type is inferred from data stored in variable. while declaring var variable, initializaton is 
+		must otherwise error. Once initializaton is done, the type will be inferred & then re-initializaton of the same var variable with diff. data-type will not be allowed i.e. Once var 
+		is initialized, we can re-initialize the same var with same data-type. var cannot be initialized with null
+		& var cannot be used as return-type in function declaration. var doesn't require casting & hence var is preferred over object.
+		E.g. 	var temp = null; 				// error : we know we cannot direclty initialize var with null
+		string ops = null; 	var temp = ops;   	// var can be initialized with null indirectly. Here, var temp first becomes string type & then holds null value.
+		E.g. List<dynamic> func() { 
+					var result = new List<dynamic>(); 
+					return result; 
+			}
+dynamic : is a run-time variable & can store any data-type
+
+
+***** C# : Creating a object dynamically like JS *****
+List<dynamic> func() {
+	var result = new List<dynamic>();
+	dynamic add = new ExpandoObject();
+	add.ID = 0;
+	add.Name = "None";
+	result.Add(add);
+	return result;
+}
+
+***** Check number is in decimal or not *****
+if (unit != (int)unit) { // print unit can't be in decimals }
+
+***** Convert to string *****
+// How to check data-type in C#
+Console.WriteLine(str.GetType() ==  typeof(int));  //False
+
+string str = Convert.ToString(num);
+string str = "" + num;
+
+***** Convert to number in C# *****
+int num = Convert.ToInt32(str); // Convert.ToDecimal()
+bool success = int.TryParse(str, out int number);	// safe conversion to numbers. returns true if successfully converted otherwise false
+

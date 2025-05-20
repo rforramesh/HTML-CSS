@@ -1,0 +1,125 @@
+**** JS : removing duplicate objects from array(model) ***
+
+				//1. using hashmap(Best Approach) : removing duplicate objects from array
+				let hashmap = new Map();
+				for(let i = 0; i < model.length; i++) {
+					hashmap.set(model[i].ID, model[i]);
+				}
+				model = [...hashmap.values()];
+				
+				//2. using Set(Better Approach) : removing duplicate objects from array
+				let set = new Set();
+				let setArr = [];
+				for (let i = 0; i < model.length; i++) {
+					if (!set.has(model[i].ID)) {
+						set.add(model[i].ID);
+						setArr.push(model[i]);
+					}
+				}
+				model = setArr;
+				
+				//3. using Set : removing duplicate objects from array
+				let set = new Set();
+				for (let i = 0; i < model.length; i++) {
+					set.add(JSON.stringify(model[i]))		//stringify: convert obj to String
+				}
+				model = [];
+				for(let x of set) {	//traverse Set
+					model.push(JSON.parse(x));				//un-stringify: convert String to obj
+				}
+				
+				//4. using .some() : removing duplicate objects from array
+				let list = [];
+				for (let i = 0; i < model.length; i++) {
+					let exists = list.some(o => o.ID === model[i].ID);
+					if (!exists) list.push(model[i]);
+				}
+				model = list;
+
+
+***** Check for duplicate strings. If there are duplicate strings then show validation *****
+Store strings in lowercase. While checking first convert strings to lowercase & then check.
+
+*****
+$scope.ShowCancelBtn = $scope.model.ID > 0;						// comparison operators always return boolean
+$scope.ShowCancelBtn = $scope.model.tostShipments === 0;		// comparison operators always return boolean
+
+
+***** Optional chaining (?.) *****
+If we try to access undefined/null value, no problem. 
+But if we  try to access Anything of undefined/null will throw undefined error(i.e. it is a runtime exception and program crashes & hence furthur code will not execute)
+Note : Accessing obj.undefined 	OR obj.null  :- No problem
+Note : Accessing obj.undefined.Anything OR obj.null.Anything  // So, Anything of undefined/null will throw undefined error & program crashes
+Solution : 	1) catch the exception using try-catch  E.g. try { obj.undefined.Anything; } catch (e) { console.log(e.message); }
+			2) Before accessing Anything,check if they exists using if condition 
+				E.g. if(obj && obj.undefined && obj.undefined.Anything) { obj.undefined.Anything; }
+			3) Use optional chaining(?.) :- ?. says I will first check if they exists then only will try to access them otherwise shortcircuits & returns undefined
+				E.g. let x = adventurer?.dog?.name;			
+				E.g. let x = adventurer?.["dog"]?.["name"];  //obj["dog"]["name"]  : is another way to access object property. We usually use it when object propertyName has space in them.
+				E.g. let x = arr?.[i]; OR arr?.[i]?.name;	
+				E.g. let x = obj?.functionName();
+				Note : 	adventurer?.dog = 5;				//wrong X : Remember ?. cannot be used on left-side for assigning values. 
+						adventurer?.dog?.name = 5;			//wrong X : if (adventurer?.dog?.name) { adventurer.dog.name = 5; }
+
+***** Nullish operator (??) *****
+We know there are 6 falsy values i.e. false, 0, NaN, null, undefined, "", out of which undefined & null is known as nullish value. 
+So, nullish means null & undefined. So, Nullish operator (??) provides a fallback value for nullish value.
+E.g. 	let result = a ?? b;			// ?? : provides fallback for null or undefined only. If a is not nullish, a is returned. If a is nullish, b is returned
+E.g. 	let result = a || b;			// || : provides fallback for all 6 falsy values
+E.g. 	let result = (obj?.name || x && y) ?? foo; 	// this way we can use ?? with other operators like ||, &&, ?.		
+E.g. 	let result = a() ?? c();					// ?? with function call
+
+
+**** .indexOf() ****
+let index = $scope.model.tostShipments.indexOf(BLDetails);  // we can also pass obj/reference inside .indexOf()
+
+***** === vs == *****
+console.log(0 === "");  // false. === is preferred over ==
+console.log(0 == "");   // true
+
+******** Convert to String *******
+let str = num.toString();   // "123"
+let str = String(num);      // "123"
+let str = "" + num;         // "123"
+
+******** Convert to number *******
+let num = parseFloat(str);
+let num = parseInt(str);
+
+**** Convert Array to string
+=== using arr.toString() : brackets are removed & then the array becomes string. If array contains an obj then object becomes "[object]"
+let str = String([1,2,3,4,5]);  				 		// "1,2,3,4,5"
+let str = ["mango", "kela", "apple"].toString(); 		// "mango,kela,apple"
+=== using JSON.stringify() : brackets are intact. Any array or object can be converted to string & thus preferred over .toString()
+let str = JSON.stringify([1,2,3,4,5]);			 		// "[1,2,3,4,5]"
+let str = JSON.stringify(["mango", "kela", "apple"]);	// "["mango", "kela", "apple"]"
+
+
+***** Cloning in JS : Right way to duplicate(clone) is Deep Copy *****
+Primitive like (e.g., numbers, strings, booleans) are copied(passed) by value. Therefore,no need for cloning them. e.g. let temp = 5;
+Non-Primitives like Objects, arrays, functions are copied(passed) by reference.Therefore, need for cloning them e.g. let temp = obj
+
+======== Shallow Copy =========
+A shallow copy creates a new object with the same top-level properties as the original, but it does not copy nested structures.
+Instead, it copies references of nested structures. 
+Note : Everthing is deeply cloned except for nested structures. So, obj === cloneObj returns false
+1) Manually creating Shallow copy :-
+for (let keys in [27, 30, "apple"]) console.log(keys);					// 0,1,2 : indexes of arr gets printed
+for (let keys in { id: 1, name: 'John', age: 41 }) console.log(keys);	// id, name, age : properties of obj gets printed
+This way, like array we can also traverse objects using for loop
+
+let cloneObj = {};
+for (let keys in obj) {         // Manually creating a Shallow Copy
+	cloneObj[keys] = obj[keys];
+}
+
+2) let cloneObj = Object.assign({}, obj);	// Shallow Copy
+3) let cloneObj = { ...obj };				// Shallow Copy
+
+======== Deep Copy (Right way to duplicate objects & arrays & Non-Primitivies) =========
+Note : Everthing is deeply cloned So, obj === cloneObj returns false
+1) let cloneObj = JSON.parse(JSON.stringify(obj));	// Traditional way of creating Deep Copy & it breaks on Dates,certain data-structures, functions.
+2) structuredClone() : Best way to deeply clone any object, any data-structure, Except : functions as they are not supported
+	E.g. let cloneObj = structuredClone(obj);	// Deep clone any object
+	E.g. let cloneArr = structuredClone(arr);	// Deep clone any data-structure
+3) angular.copy() : Use when u want to clone functions. Doesn't support Map, Set, or ArrayBuffer.
