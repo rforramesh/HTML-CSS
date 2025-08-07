@@ -51,20 +51,22 @@ dynamic : is a run-time variable & can store any data-type
 ***** C# : Creating a object dynamically like JS *****
 List<dynamic> func() {
 	var result = new List<dynamic>();
-	dynamic add = new ExpandoObject();
+	dynamic add = new System.Dynamic.ExpandoObject();
 	add.ID = 0;
 	add.Name = "None";
 	result.Add(add);
 	return result;
 }
 
-***** Check number is in decimal or not *****
+***** Check for null in C# : if (value == null || value == DBNull.Value) {-}
+
+***** Check if number is double or not *****
 if (unit != (int)unit) { // print unit can't be in decimals }
 
-***** Convert to string *****
-// How to check data-type in C#
+***** How to check data-type in C#
 Console.WriteLine(str.GetType() ==  typeof(int));  //False
 
+***** Convert to string *****
 string str = Convert.ToString(num);
 string str = "" + num;
 
@@ -72,3 +74,31 @@ string str = "" + num;
 int num = Convert.ToInt32(str); // Convert.ToDecimal()
 bool success = int.TryParse(str, out int number);	// safe conversion to numbers. returns true if successfully converted otherwise false
 
+
+***** //C# :  .Clone() 
+Deep Copy : Serialize & then DeSerialize the object using library NewtonSoft
+Shallow Copy : Implement ICloneable interface
+class Person() : ICloneable
+{
+    public object Clone()
+    {
+        return this.MemberwiseClone();
+    }
+}
+
+***** validator - required
+if (Attributes["validator"].ToLower().Contains("required"))
+  lbl._Text = lbl._Text + " <span style='color: red; font - weight:bolder'>*</span>";
+}
+
+***** ctx.Include()
+public partial class tostJobOrder : ModelBase<tostJobOrder> , IEntity, ISite {
+#region Navigation Properties
+public martVoyage Voyage {get;set;}
+public tossActivityType ActivityType {get;set;}
+public tostCFSPlanning CFSPlanning {get;set;} 					// obj means parent table
+public tostShipment Shipment {get;set;}
+public List<tostJobOrderCargo> tostJobOrderCargos {get;set;}	// List means child table
+public List<tostJobOrderStatus> tostJobOrderStatuses {get;set;}
+public List<tostRAManifestDetail> tostRAManifestDetails {get;set;}
+}

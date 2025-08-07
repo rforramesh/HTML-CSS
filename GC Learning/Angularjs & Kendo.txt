@@ -23,6 +23,13 @@
 
 // To reset ui-select select2 dropdown : always use object(ng-model)
 $scope.model.RowName = null;
+
+
+//always write $validator first 
+ $scope.save = function (StatusID) {
+        $validator.validate($scope).success(function () {
+        $scope.model.StatusID = StatusID;
+
 ==========================================================  Kendo ===============================================================================
 
 columns: [		// Index page Kendo Grid 
@@ -44,7 +51,7 @@ columns: [		// Index page Kendo Grid
 },
 
 ***** Hide & Show column in Kendo grid *****
-$scope.bindGrid = function () {
+$scope.bindGrid = function () {				// simply call bindGrind() whenever u want to initialize OR refresh the kendo grid
     var gridElement = $("#bulkcargogrid");	// Imp : reset grid by clearing old data 
     var existingGrid = gridElement.data("kendoGrid");
     if (existingGrid) {
@@ -78,8 +85,14 @@ $scope.bindGrid = function () {
             { field: "Mass", title: "Mass", hidden: $scope.HideMass },
             { field: "Volume", title: "Volume", hidden: $scope.HideVolume }
         ], 
-		dataBound: function (e) {  			// when grid is fully loaded into the DOM, then dataBound is automatically fired 
-                let data = $("#bulkcargogrid").data("kendoGrid").dataSource.data();
+		dataBound: function (e) {   // when grid is fully loaded into the DOM, then dataBound is automatically fired 
+                let data = $("#bulkcargogrid").data("kendoGrid").dataSource.data();		// Get grid data
+				var grid = $("#bulkcargogrid").data("kendoGrid");						// Get grid
+				if ($scope.HideMass) { 			// We can also manually show & hide kendo column if hidden: is not working
+					grid.hideColumn("Mass");
+                } else {
+                    grid.showColumn("Mass");
+                }
         }
     };
 }

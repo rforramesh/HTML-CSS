@@ -73,7 +73,7 @@ E.g.
 	
 	
 ***** How to use Web.config parameter inside query *****	 
-AND shp.ID IN (SELECT ShipmentID FROM tostShipmentClearance where (@IsKribi<>1) OR (@IsKribi=1 AND IsKMTClearance=1 AND IsPAKClearance=1 AND IsCustomClearance=1))
+AND shp.ID IN (SELECT ShipmentID FROM tostShipmentClearance where (@IsKribi=0) OR (@IsKribi=1 AND IsKMTClearance=1 AND IsPAKClearance=1 AND IsCustomClearance=1))
 
 ***** CTE : finding Remaining Amounts *****
 -- CTE :-
@@ -97,7 +97,7 @@ UNION ALL
 select sg.CargoID, sg.StowUnit AS 'BalanceUnit', sg.StowMass AS 'BalanceMass', sg.StowVolume AS 'BalanceVolume'  from StowGet sg
 where not exists (select 1 from VesselLoadGet);
 
--- CTE :-
+-- CTE :- (Finds All Cargos with their Remaining Amount)
 ;WITH StowGet(CargoID, StowUnit, StowMass, StowVolume) AS (
 	select distinct CargoID, ISNULL(sum(UnitMeasurementAmt), 0), ISNULL(sum(MassMeasurementAmt), 0), ISNULL(sum(VolumeMeasurementAmt), 0) 
 	from tostStow where VoyageID=@VoyageID AND ShipmentID=@ShipmentID AND VesselHoldID=@VesselHoldID AND IsActive=1 AND SiteID=8
@@ -114,3 +114,22 @@ select distinct st.CargoID,
 from StowGet st
 LEFT JOIN VesselLoadGet vl on vl.CargoID=st.CargoID;
 
+
+Correlated Subquery?
+// Using Corelated subqueries to show , separated values
+select 
+		MV.Name "VesselName",
+		(select STRING_AGG(Code, ', ') from marmVesselHold VH where VH.VesselID=MV.ID AND VH.IsActive=1) AS Holds
+from marmVessel MV;
+
+Note : Coorelated have performance and slowness issues hence avoid it
+// Showing , separated values using CTE thereby avoiding corelated subquery
+;WITH CTE AS (
+select 
+		VesselID, STRING_AGG(Code, ', ') AS Holds
+from marmVesselHold 
+where IsActive=1
+group by VesselID
+)
+select MV.Name "VesselName", CTE.Holds from marmVessel MV
+JOIN CTE on CTE.VesselID=MV.ID

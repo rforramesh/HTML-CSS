@@ -123,3 +123,22 @@ Note : Everthing is deeply cloned So, obj === cloneObj returns false
 	E.g. let cloneObj = structuredClone(obj);	// Deep clone any object
 	E.g. let cloneArr = structuredClone(arr);	// Deep clone any data-structure
 3) angular.copy() : Use when u want to clone functions. Doesn't support Map, Set, or ArrayBuffer.
+
+
+***** Check duplicate string (store them always as str.trim().replace(" ","").lowercase & then check string is duplicate or not)  *****
+
+***** Check obj is empty : if (Object.keys($scope.model.Media[0].File).length === 0) 
+***** Delete a property from a obj : delete $scope.model.Media;
+***** append properties of one object to another object :- Object.assign(target, source);  
+
+.map() :- .map() traverses each element of array & then returns a new array based on the given condition. Since it returns a new array, the og. arr. remains as it is.
+Note : length of new array & original array will be same.
+E.g. Collects all IDs from an array of objects
+const users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+  { id: 5, name: 'Lolo' },
+  { id: 12, name: 'Insiya' }
+];
+let arr = users.map(o => o.id); // [ 1, 2, 5, 12 ]
+
