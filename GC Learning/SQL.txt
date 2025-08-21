@@ -133,3 +133,40 @@ group by VesselID
 )
 select MV.Name "VesselName", CTE.Holds from marmVessel MV
 JOIN CTE on CTE.VesselID=MV.ID
+
+
+
+***** CASE : generally CASE can be used anywhere i.e. select part, from part, join part, where part, inside aggregate functions, etc
+1) 	THEN part always returns single value & datatype must be same. If anyone one condition executes then rest of the condition is ignored. 
+	If No condition executes & there is no else part, then by default returns NULL (as NULL is compatible will all datatypes)
+CASE	
+	WHEN condition1 THEN 'singleValue of same datatype'
+	WHEN condition2 THEN 'singleValue of same datatype'
+	ELSE 'singleValue of same datatype'
+END
+2) Using CASE in where part (for filtering) :
+	where IsActive = 1 AND ID=CASE WHEN @ID>0 THEN @ID ELSE ID END
+3) Using CASE in JOIN part :
+   LEFT JOIN tableName tbl on tbl.col=CASE WHEN Code in ('SOC','ACC') THEN col1 ELSE col2 END
+4) How to return multiple values from CASE statement : We know CASE always returns single value, but it's possible to return multiple values using CTE, OR operator
+	e.g. 	select * from tableName where IsActive=1 
+			AND StatusID IN (CASE WHEN @id=10 THEN 3 WHEN @id=52 THEN 4 WHEN @id=0 THEN 3,4 END) -- syntax error here since CASE cannot return multiple values 3,4
+	(i) Using OR operator : returning multiple values from CASE statement
+		select * from tableName where IsActive=1 
+		AND (StatusID=CASE WHEN @TypeID=0 THEN 3 WHEN @TypeID=52 THEN 4 WHEN @TypeID=10 THEN 3 END 
+			 OR StatusID=CASE WHEN @TypeID=0 THEN -1 WHEN @TypeID=52 THEN -1 WHEN @TypeID=10 THEN 4 END )
+	(ii) Using CTE : returning multiple values from CASE statement
+		;WITH CTE(TypeID, StatusID) AS (
+			select 0, 3
+			union all
+			select 52, 4
+			union all
+			select 10, 3
+			union all
+			select 10, 4
+		)
+		select * from tableName where IsActive=1 
+		AND StatusID IN (select ID from CTE where TypeID=@TypeID);
+
+
+

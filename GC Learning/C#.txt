@@ -102,3 +102,18 @@ public List<tostJobOrderCargo> tostJobOrderCargos {get;set;}	// List means child
 public List<tostJobOrderStatus> tostJobOrderStatuses {get;set;}
 public List<tostRAManifestDetail> tostRAManifestDetails {get;set;}
 }
+
+***** Enums : means list of constants. Enums can be defined inside/outside a class.
+enum Status {
+    Open = 1,		// constantName = integerValue ==> underlying value of enum i.e. constant value allowed is only int, long.
+    pending = 2,
+    Activated = 3,
+    Executed = 4,
+}
+Status s0 = className.enumName.constantName; // if enum is defined inside class, it acts as private & accessible only within the same class
+Status s = Status.Open;     
+Console.WriteLine(s);		// Open
+Console.WriteLine((int)s);	// 1
+	
+	
+	
